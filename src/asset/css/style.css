@@ -1,0 +1,407 @@
+/* Header */
+.header {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    /* background: var(--bg-1); */
+    background: #ffffff33;
+    padding: 0 40px;
+    position: sticky;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+.header .inner-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .inner-logo a {
+    display: flex;
+    align-items: center;
+}
+
+.header .inner-logo img {
+    height: 100px;
+    width: auto;
+}
+
+.header .inner-logo span {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-left: 10px;
+}
+
+.header .inner-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.header .inner-menu ul li a {
+    display: inline-block;
+    padding: 35px 20px;
+    color: var(--color-text);
+    font-size: 18px;
+}
+
+.header .inner-menu ul li a:hover {
+    background: #fff;
+}
+
+.header .inner-button {
+    display: flex;
+        align-items: center;
+}
+.header .inner-button .inner-dropdown .dropbtn {
+    display: flex;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-right:10px;
+}
+
+.header .inner-button .inner-dropdown .dropbtn img {
+    border-radius: 50%;
+}
+
+.header .inner-button .inner-dropdown .dropbtn p {
+    margin: 0;
+    padding: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.show {
+    display: block;
+}
+
+.header .inner-button .inner-link  p{
+    list-style: none;
+    margin: 20px;
+    font-size: 16px;
+    color: black;
+
+
+}
+
+@media (max-width:991.98px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header .inner-icon-mobi {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .header .inner-menu {
+        display: none;
+    }
+
+    .header .inner-social {
+        display: none;
+    }
+}
+
+/* End Header */
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 20px 0;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.footer-top ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+
+}
+
+.footer-top li {
+    padding: 0 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.footer-top li::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 60%;
+    background: #ccc;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer-top li:last-child::after {
+    display: none;
+}
+
+.footer-top img {
+    height: 50px;
+}
+
+.footer-top li:last-child a {
+    margin: 0 8px;
+    color: rgb(160, 215, 239);
+    font-size: 20px;
+}
+
+.footer-center {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-top ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer-top li {
+        padding: 5px 0;
+    }
+
+    .footer-top li::after {
+        display: none;
+    }
+}
+
+/* End Footer */
+
+/* Input search */
+.search-section .inner-slide{
+    position: relative;
+}
+.search-section .inner-search {
+    position: absolute;
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    border-radius: 20px;
+    z-index: 999;
+    padding: 10px 20px;
+    
+    /* Căn giữa tuyệt đối */
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-suggestion, 
+.search-city {
+    flex: 1; /* Hai ô Input chiếm chiều rộng bằng nhau */
+}
+.search-suggestion .ant-input,
+.search-city .ant-select-selector {
+    height: 50px !important;; 
+    font-size: 18px;
+    padding: 10px 16px; 
+    border-radius: 8px;
+}
+.search-suggestion span {
+    font-size: 18px;
+    padding: 0;
+}
+
+/* Tăng kích thước chữ trong Select */
+.search-city .ant-select-selection-item {
+    font-size: 18px;
+}
+.search-button {
+    flex: 0.3; /* Button chiếm phần còn lại */
+}
+
+.search-button input {
+    width: 100%; /* Button full width */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    height: 50px; /* Cùng chiều cao với input */
+    font-size: 18px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-button input:hover {
+    background-color: #0056b3;
+}
+
+
+/*End  Input search */
+
+
+/* Job list */
+
+.inner-job .inner-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Chia layout dạng flex */
+.inner-job .job-list {
+    display: flex;
+    flex-wrap: wrap; /* Giúp card tự xuống hàng */
+    justify-content: space-between; /* Căn đều các card */
+    gap: 60px;
+    padding: 10px;
+}
+
+/* Card công việc */
+.inner-job .job-list .inner-cart {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    flex: 1 1 calc(33.33% - 20px); /* Chia 3 card trên 1 hàng */
+   
+}
+
+.inner-job .job-list .inner-cart:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hình ảnh công việc */
+.inner-job .job-list .inner-cart .inner-left img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Nội dung bên phải */
+.inner-job .job-list .inner-cart .inner-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Tiêu đề công việc */
+.inner-job .job-list .inner-cart .inner-right .job-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inner-job .job-list .inner-cart .inner-right .job-name h5 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #222;
+    margin: 0;
+    flex: 1;
+}
+
+.inner-job .job-list .inner-cart .inner-right .job-name span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff4d4f;
+    background-color: #ffe8e8;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+/* Tên công ty */
+.inner-job .job-list .inner-cart .inner-right .company-name p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Thông tin vị trí và lương */
+.inner-job .job-list .inner-cart .inner-right .infomaition {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: #666;
+}
+
+.inner-job .job-list .inner-cart .inner-right .infomaition .position p,
+.inner-job .job-list .inner-cart .inner-right .infomaition .salary p {
+    margin: 0;
+    font-weight: 500;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 899px) {
+    .inner-job .job-list .inner-cart {
+        flex: 1 1 calc(50% - 20px); /* Hiển thị 2 card trên 1 hàng */
+    }
+}
+
+@media (max-width: 599px) {
+    .inner-job .job-list .inner-cart {
+        flex: 1 1 100%; /* Hiển thị 1 card trên 1 hàng */
+    }
+}
+
+/* End Job  List */
