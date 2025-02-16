@@ -1,12 +1,13 @@
 import { Select, Space } from 'antd';
-import { use } from 'react';
 
 
 function SearchCity(props) {
-    const {dataCities} = props;
-    console.log(dataCities)
-    const handleChange =(e) =>{
-        console.log(e)
+    const {dataCities, onCityChange, defaultValue} = props;
+    const handleChange =(options) =>{
+        if(onCityChange){
+            onCityChange(options)
+        }
+        
     }
     return (
         <>
@@ -16,12 +17,13 @@ function SearchCity(props) {
                     width: '100%',  // Chiếm toàn bộ không gian có thể
 
                 }}
-                defaultValue={["ALL"]}
                 placeholder="Nhập tỉnh, Thành phố "
+                name="city"
                 onChange={handleChange}
+                defaultValue={defaultValue}
                 options={dataCities.map(city =>({
-                    label: city.cityName,
-                    value: city._id
+                    label: city.CityName,
+                    value: city.CityName
                 }))}
                 
             />

@@ -1,4 +1,4 @@
-const API_DOMAIN = "http://localhost:3001/";
+const API_DOMAIN = "http://localhost:3002/";
 
 // Hàm lấy token từ localStorage
 const getToken = () => localStorage.getItem("token");

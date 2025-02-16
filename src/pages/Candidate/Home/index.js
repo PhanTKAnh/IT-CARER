@@ -1,14 +1,18 @@
-import JobList from "../../../components/Candidate/JobList";
-import SearchInput from "../../../components/Candidate/SearcchInput";
-import Slide from "../../../components/Candidate/Slide";
+import FormSearch from "../../../components/Candidate/FormSearch";
+import CompanyList from "./companyList";
+import JobList from "./jobList";
+import Slide from "./slide";
+import TagList from "./tagList";
 
 function Home(){
     return(
         <>
         <div className="search-section">
-        <SearchInput/>
+        <FormSearch/>
         <Slide/>
         <JobList/>
+        <TagList/>
+        <CompanyList/>
         </div>
         </>
     )

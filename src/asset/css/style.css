@@ -35,6 +35,14 @@
     margin-left: 10px;
 }
 
+.header-search-form .inner-search {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+
 .header .inner-menu ul {
     list-style: none;
     margin: 0;
@@ -124,7 +132,6 @@
         display: none;
     }
 }
-
 /* End Header */
 
 /* Footer */
@@ -218,7 +225,6 @@ footer {
         display: none;
     }
 }
-
 /* End Footer */
 
 /* Input search */
@@ -254,12 +260,16 @@ footer {
     padding: 10px 16px; 
     border-radius: 8px;
 }
+.search-city :where(.css-dev-only-do-not-override-xex5fb).ant-select-multiple .ant-select-selection-overflow {
+    flex: auto;
+    flex-wrap: nowrap;
+
+}
 .search-suggestion span {
     font-size: 18px;
     padding: 0;
 }
 
-/* Tăng kích thước chữ trong Select */
 .search-city .ant-select-selection-item {
     font-size: 18px;
 }
@@ -268,11 +278,11 @@ footer {
 }
 
 .search-button input {
-    width: 100%; /* Button full width */
+    width: 100%; 
     padding: 10px;
     background-color: #007bff;
     color: white;
-    height: 50px; /* Cùng chiều cao với input */
+    height: 50px; 
     font-size: 18px;
     padding: 10px 16px;
     border-radius: 8px;
@@ -282,31 +292,36 @@ footer {
 .search-button input:hover {
     background-color: #0056b3;
 }
-
-
 /*End  Input search */
 
 
 /* Job list */
-
-.inner-job .inner-text {
+ .inner-text {
     font-size: 28px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
 }
-
-/* Chia layout dạng flex */
-.inner-job .job-list {
+.inner-job{
     display: flex;
-    flex-wrap: wrap; /* Giúp card tự xuống hàng */
-    justify-content: space-between; /* Căn đều các card */
-    gap: 60px;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
 }
 
-/* Card công việc */
-.inner-job .job-list .inner-cart {
+.inner-job .job-list {
+    display: flex;       
+    flex-wrap: wrap;     
+    gap: 10px;          
+    padding: 10px;
+  }
+  
+  .inner-job .job-list .inner-card {
+    /* Cách 1: flex-basis chiếm 1/3 chiều rộng, trừ gap */
+    flex: 1 1 calc(33.333% - 10px);
+    box-sizing: border-box;
+    
+    /* Các thuộc tính khác */
     display: flex;
     align-items: center;
     gap: 16px;
@@ -317,39 +332,35 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     position: relative;
-    flex: 1 1 calc(33.33% - 20px); /* Chia 3 card trên 1 hàng */
-   
-}
+  }
+  
 
-.inner-job .job-list .inner-cart:hover {
+
+.inner-job .job-list .inner-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Hình ảnh công việc */
-.inner-job .job-list .inner-cart .inner-left img {
+.inner-job .job-list .inner-card .inner-left img {
     width: 120px;
     height: 120px;
     border-radius: 10px;
     object-fit: cover;
 }
 
-/* Nội dung bên phải */
-.inner-job .job-list .inner-cart .inner-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.inner-job .job-list .inner-card .inner-right {
+    display: block;
+
 }
 
-/* Tiêu đề công việc */
-.inner-job .job-list .inner-cart .inner-right .job-name {
+.inner-job .job-list .inner-card .inner-right .job-name {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 10px;
 }
 
-.inner-job .job-list .inner-cart .inner-right .job-name h5 {
+.inner-job .job-list .inner-card .inner-right .job-name h5 {
     font-size: 14px;
     font-weight: bold;
     color: #222;
@@ -357,7 +368,7 @@ footer {
     flex: 1;
 }
 
-.inner-job .job-list .inner-cart .inner-right .job-name span {
+.inner-job .job-list .inner-card .inner-right .job-name span {
     font-size: 12px;
     font-weight: bold;
     color: #ff4d4f;
@@ -366,42 +377,415 @@ footer {
     border-radius: 5px;
 }
 
-/* Tên công ty */
-.inner-job .job-list .inner-cart .inner-right .company-name p {
+.inner-job .job-list .inner-card .inner-right .company-name p {
     font-size: 14px;
     color: #555;
     margin: 0;
     font-weight: 500;
+    margin-bottom: 10px;
 }
 
-/* Thông tin vị trí và lương */
-.inner-job .job-list .inner-cart .inner-right .infomaition {
-    display: flex;
+.inner-job .job-list .inner-card .inner-right .infomaition {
     gap: 12px;
     font-size: 14px;
     color: #666;
 }
 
-.inner-job .job-list .inner-cart .inner-right .infomaition .position p,
-.inner-job .job-list .inner-cart .inner-right .infomaition .salary p {
+.inner-job .job-list .inner-card .inner-right .infomaition .position p,
+.inner-job .job-list .inner-card .inner-right .infomaition .salary p {
     margin: 0;
+    margin-bottom: 10px;
     font-weight: 500;
-    background-color: #f1f1f1;
     padding: 5px 10px;
     border-radius: 6px;
 }
 
+
 /* Responsive */
 @media (max-width: 899px) {
-    .inner-job .job-list .inner-cart {
+    .inner-job .job-list .inner-card {
         flex: 1 1 calc(50% - 20px); /* Hiển thị 2 card trên 1 hàng */
     }
 }
 
 @media (max-width: 599px) {
-    .inner-job .job-list .inner-cart {
+    .inner-job .job-list .inner-card {
         flex: 1 1 100%; /* Hiển thị 1 card trên 1 hàng */
     }
 }
-
 /* End Job  List */
+
+/* Tag list */
+.inner-tag .inner-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.inner-tag .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+.inner-tag .tag-list .inner-card {
+    display: block;
+    background-color: #EDF2FC;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    width: 220px;
+    text-align: center;
+}
+
+.inner-tag .tag-list .inner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inner-tag .tag-list .inner-card .inner-image {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#EDF2FC;
+    border: 2px solid #4684e1;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    padding: 10px;
+}
+
+.inner-tag .tag-list .inner-card .inner-image img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.inner-tag .tag-list .inner-card .inner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-tag .tag-list .inner-card .inner-content .inner-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.inner-tag .tag-list .inner-card .inner-content .inner-count {
+    font-size: 15px;
+    color: #666;
+}
+/* End Tag List */
+
+/* button */
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    
+}
+
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 30px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 20px 16px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+/* end Button */
+
+/* list-company */
+.list-company .inner-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.list-company {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    padding: 20px;
+}
+
+.list-company .inner-card {
+    flex: 1 1 calc(25% - 20px); 
+    max-width: calc(25% - 20px); 
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .list-company .inner-card {
+        flex: 1 1 calc(50% - 20px); 
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .list-company .inner-card {
+        flex: 1 1 100%; 
+        max-width: 100%;
+    }
+}
+
+
+.list-company .inner-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.list-company .inner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.list-company .inner-logo {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 3px solid white;
+}
+
+.list-company .inner-logo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+
+.list-company .inner-content {
+    margin-top: 50px;
+}
+
+
+.list-company .inner-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+
+.list-company .inner-content .inner-text {
+    font-size: 16px;
+    color: #666;
+}
+
+
+.list-company .footer-cart {
+   display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+
+.list-company .footer-cart .inner-text,
+.list-company .footer-cart .inner-position {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Search List */
+.inner-result {
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .inner-result h4 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 8px;
+  }
+  
+  .inner-result span {
+    font-size: 18px;
+    color: #007bff;
+    margin: 0;
+  }
+  
+.search-card {
+    display: flex;
+    background-color: #EDF2FC;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease;
+    padding: 20px;
+  }
+  
+  .search-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Phần bên trái chứa hình ảnh */
+  .search-card .inner-left {
+    flex: 0 0 120px; /* Chiều rộng cố định cho phần hình ảnh */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+  }
+  
+  .search-card .inner-left .inner-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .search-card .inner-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Phần bên phải chứa nội dung */
+  .search-card .inner-right {
+    flex: 1;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .search-card .inner-right .inner-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .search-card .inner-right .inner-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .search-card .inner-right .inner-postion {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  
+  .search-card .inner-right .inner-postion span {
+    margin-right: 12px;
+  }
+  
+  .search-card .inner-right .inner-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .search-card .inner-right .inner-info span {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ví dụ nếu muốn icon có khoảng cách nhỏ */
+  .search-card .inner-right .inner-info span svg {
+    margin-right: 4px;
+  }
+  
+/* End search List */
