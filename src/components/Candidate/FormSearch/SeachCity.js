@@ -23,7 +23,7 @@ function SearchCity(props) {
                 defaultValue={defaultValue}
                 options={dataCities.map(city =>({
                     label: city.CityName,
-                    value: city.CityName
+                    value: city.slug
                 }))}
                 
             />

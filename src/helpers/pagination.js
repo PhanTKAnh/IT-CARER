@@ -8,7 +8,7 @@ export const handleNextPage = (page, totalPages, setPage) => {
     }
 };
 
-export const handlePrevPage = (page, setPage) => {
+export const handlePrevPage = (page, totalPages, setPage) => {
     if (page > 1) {
         setPage(prev => prev - 1);
     }

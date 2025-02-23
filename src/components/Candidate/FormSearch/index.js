@@ -1,58 +1,88 @@
 import { Input } from "antd";
 import SearchCity from "./SeachCity";
-import { useState,useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getListCities } from "../../../sevices/city.sevices";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom";
 
+function FormSearch({ defaultKeyword, defaultCity }) {
+  const [dataCities, setDataCities] = useState([]);
+  const [keyword, setKeyword] = useState(defaultKeyword || "");
+  const [selectedCity, setSelectedCity] = useState(defaultCity ? defaultCity.split(",") : []);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-function FormSearch(props) {
-     const { defaultKeyword, defaultCity } = props;
-    const [dataCities,setDataCities] = useState([]);
-    const [keyword, setKeyword] = useState(defaultKeyword ? defaultKeyword :"");
-    const [selectedCity,setSelectedCity] = useState( defaultCity ? defaultCity.split(",") : []);
-    const navigate = useNavigate();
+  useEffect(() => {
+    let isMounted = true;
+    const fetchApi = async () => {
+      try {
+        const cities = await getListCities();
+        if (isMounted) {
+          setDataCities(cities);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cities", error);
+      }
+    };
+    fetchApi();
 
-    
-    useEffect(()=>{
-        const fetchApi = async () =>{
-            const cities = await getListCities();
-            if(cities){
-                setDataCities(cities);
-            };
-        };
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-        fetchApi();
-    },[]);
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        navigate(`/search?keyword=${keyword}&city=${selectedCity}`)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams(location.search);
+    if (keyword.trim()) {
+      params.set("keyword", keyword.trim());
+    } else {
+      params.delete("keyword");
     }
-    const handleCityCHange = (values) =>{
-        setSelectedCity(values);
+    if (selectedCity.length > 0) {
+      params.set("city", selectedCity.join(","));
+    } else {
+      params.delete("city");
     }
-    
-    return (
-        <>
-            <div className="container">
-                <form className="inner-search" onSubmit={handleSubmit}>
-                    <div className="search-suggestion">
-                        <Input
-                           placeholder="Nhập tên vị trí, công ty, từ khóa"
-                           name="keyword"
-                           value={keyword}
-                           onChange={(e) => setKeyword(e.target.value)}
-                        />
-                    </div>
-                    <div className="search-city">
-                    <SearchCity dataCities={dataCities} defaultValue={selectedCity} onCityChange={handleCityCHange} />
-                    </div>
-                    <div className="search-button">
-                        <input type="submit" value="Tìm kiếm" />
-                    </div>
+    navigate(`/search?${params.toString()}`);
+  };
 
-                </form>
-            </div>
-        </>
-    )
-};
+  const handleCityChange = (values) => {
+    setSelectedCity(values);
+    const params = new URLSearchParams(location.search);
+    if (values.length > 0) {
+      params.set("city", values.join(","));
+    } else {
+      params.delete("city");
+    }
+    navigate(`/search?${params.toString()}`);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <form className="inner-search" onSubmit={handleSubmit}>
+          <div className="search-suggestion">
+            <Input
+              placeholder="Nhập tên vị trí, công ty, từ khóa"
+              name="keyword"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+          </div>
+          <div className="search-city">
+            <SearchCity 
+              dataCities={dataCities} 
+              defaultValue={selectedCity} 
+              onCityChange={handleCityChange} 
+            />
+          </div>
+          <div className="search-button">
+            <input type="submit" value="Tìm kiếm" />
+          </div>
+        </form>
+      </div>
+    </>
+  );
+}
+
 export default FormSearch;

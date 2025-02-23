@@ -1,19 +1,19 @@
 import { HeartOutlined } from '@ant-design/icons';
 function SearchList(props) {
-    const { jobsSearch } = props;
+    const { jobsList } = props;
     return (
         <>
             {
-                jobsSearch.map(data => (
+                jobsList.map(data => (
                     <div key={data._id} className="search-card">
                         <div className="inner-left">
                             <div className="inner-image">
-                                <img src={data.company.name.avatar} />
+                            <img src={data?.company?.avatar || "https://via.placeholder.com/150"} alt="Company Avatar" />
                             </div>
                         </div>
                         <div className="inner-right">
                             <div className="inner-title">{data.Name}</div>
-                            <div className="inner-text">{data.company.name.CompanyName}</div>
+                            <div className="inner-text">{data?.company?.CompanyName}</div>
                             <div className="inner-postion">
                             <span>
                                 {data.cities.map(city => (

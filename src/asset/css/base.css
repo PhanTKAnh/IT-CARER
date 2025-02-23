@@ -36,7 +36,6 @@ ul{
 
 .container {
     width: 100%;
-    max-width: clamp(1200px, 90%, 1600px); /* Linh hoạt từ 1200px - 1600px */
     padding-left: 10px;
     padding-right: 10px;
     margin-left: auto;
