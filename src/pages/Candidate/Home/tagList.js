@@ -20,18 +20,7 @@ function TagList() {
             setLoading(true);
             try {
                 const tags = await getTagList();
-                const jobs = await getListJob();
-
                 setDataTag(tags);
-
-                const countJob = {};
-                jobs.forEach((job) => {
-                    job.IdTags.forEach(tagId => {
-                        countJob[tagId] = (countJob[tagId] || 0) + 1;
-                    });
-                });
-
-                setCountJobs(countJob);
             } catch (error) {
                 console.error("Lỗi khi lấy dữ liệu:", error);
             } finally {
@@ -65,7 +54,7 @@ function TagList() {
                             </div>
                         ))
                     ) : (
-                        <TagItem dataTag={displayed} countJobs={countJobs} />
+                        <TagItem dataTag={displayed}/>
                     )}
                     <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
                 </div>

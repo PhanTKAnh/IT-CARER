@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
-
+import{EnvironmentOutlined } from "@ant-design/icons"
 function CompanyItem(props) {
     const { dataCompany } = props;
     return (
         <>
             {
-                dataCompany.map(item => (
+                dataCompany?.map(item => (
                     <div key={item._id} className="inner-card">
                         <NavLink to={`/${item.slug}`}>
                             <div className="inner-image">
-                                <img src="https://blob-careerlinkvn.careerlink.vn/company_banners/70a70c3686c448aab0f8315fbdde93a9" />
+                                <img src={item.avatar} />
                             </div>
                             <div className="inner-logo">
                                 <img src="https://static.careerlink.vn/image/cd95139a4118d9309ef97fbe8f98b823" />
@@ -23,19 +23,16 @@ function CompanyItem(props) {
                             </NavLink>
                             <div className="inner-text">
                                 Đang tuyển :
-                                {item.jobs.map(job => (
-                                    <span> {job.Name}, </span>
-                                ))}
+                                {item.jobs?.map(job =>  job.Name).join(", ")}
                             </div>
                         </div>
                         <div className="footer-cart">
                             <div className="inner-text">
-                                {item.jobs.length} đang tuyển
+                                {item.jobCount} đang tuyển
                             </div>
                             <div className="inner-position">
-                                {item.cities.map(city => (
-                                    <span> {city.CityName}, </span>)
-                                )}
+                            <EnvironmentOutlined />
+                            {item.jobs?.map(job =>  job.cities?.map(city => city.CityName)).join(", ")}
                             </div>
                         </div>
                     </div>

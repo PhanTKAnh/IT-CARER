@@ -11,51 +11,61 @@
     width: 100%;
 
 }
+
 .header .inner-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .header .inner-logo a {
     display: flex;
     align-items: center;
 }
+
 .header .inner-logo img {
     height: 90px;
     width: auto;
 }
+
 .header .inner-logo span {
     font-size: 22px;
     font-weight: 600;
     color: var(--color-text);
     margin-left: 10px;
 }
+
 .header-search-form .inner-search {
     display: flex;
     gap: 10px;
     padding: 20px;
     border-radius: 8px;
 }
+
 .header .inner-menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
+
 .header .inner-menu ul li a {
     display: inline-block;
     padding: 35px 20px;
     color: var(--color-text);
     font-size: 18px;
 }
+
 .header .inner-menu ul li a:hover {
     background: #fff;
 }
+
 .header .inner-button {
     display: flex;
     align-items: center;
     position: relative;
 }
+
 .header .inner-button .inner-dropdown .dropbtn {
     display: flex;
     align-items: center;
@@ -68,99 +78,154 @@
     margin-right: 10px;
     transition: background-color 0.3s ease;
 }
+
 .header .inner-button .inner-dropdown .dropbtn:hover {
     background-color: #f0f0f0;
 }
+
 .header .inner-button .inner-dropdown .dropbtn img {
     border-radius: 50%;
     margin-right: 5px;
 }
+
 .header .inner-button .inner-dropdown .dropbtn p {
     margin: 0;
     padding: 5px;
 }
+
 .show {
     display: block !important;
 }
-.header .inner-button .inner-dropdown .dropdown-content {
+
+
+
+/* Nội dung dropdown */
+.header .inner-button .inner-dropdown  .dropdown-content {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.815);
-    min-width: 300px;
-    width: auto;
-    /* Tự động theo nội dung */
-    min-height: 300px;
-    height: auto;
-    /* Tự động điều chỉnh theo nội dung */
-    max-width: 400px;
-    /* Giới hạn tối đa */
-    max-height: 400px;
-    /* Giới hạn tối đa */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 60px;
+    left: -100px;
+    background-color: #fff;
+    width: 400px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 8px;
-    height: 300px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 8px;
-
-}
-.header .inner-button .inner-dropdown .dropdown-content .inner-head {
-    display: flex;
-}
-.header .inner-button .inner-dropdown .dropdown-content .inner-head a button {
-    width: 100%;
     padding: 15px;
-    margin: 8px;
-    margin-bottom: 5px;
+}
+
+/* Định dạng hai nút đăng nhập & đăng ký */
+.header .inner-button .inner-dropdown .inner-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .inner-button .inner-dropdown   .inner-head a {
+    width: 50%;
+}
+
+.header .inner-button .inner-dropdown .inner-head a button {
+    width: 100%;
+    padding: 12px;
     border: none;
-    background-color: #005EF0;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
     border-radius: 30px;
     transition: background-color 0.2s ease;
-    font-weight: 600;
-    color: white;
-    text-align: center;
 }
-.header .inner-button .inner-dropdown .dropdown-content .inner-head .btn-2 {
+
+.header .inner-button .inner-dropdown .inner-head a .btn-1 {
+    background-color: #005EF0;
+    color: white;
+}
+
+.header .inner-button .inner-dropdown .inner-head a .btn-2 {
     background-color: #e0e0e0;
     color: #005EF0;
 }
-.header .inner-button .inner-dropdown .dropdown-content .inner-head .btn-1 {
-    color: #fff;
-}
-.header .inner-button .inner-dropdown .dropdown-content .inner-head .btn-1:hover {
+
+.header .inner-button .inner-dropdown .inner-head a .btn-1:hover {
     background-color: #0455d8;
 }
-.header .inner-button .inner-dropdown .dropdown-content .inner-head .btn-2:hover {
+
+.header .inner-button .inner-dropdown .inner-head a .btn-2:hover {
     background-color: #005EF0;
-    color: #fff;
+    color: white;
 }
+
+/* Nội dung chính */
 .header .inner-button .inner-dropdown .inner-content {
     display: flex;
     padding: 10px 0;
     gap: 10px;
 }
+
 .header .inner-button .inner-dropdown .inner-left {
     flex: 1;
 }
+
 .header .inner-button .inner-dropdown .inner-right {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 5px;
 }
+
 .header .inner-button .inner-dropdown .inner-right p {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 10px;
+    gap: 8px;
+    padding: 0;
     cursor: pointer;
+    border-radius: 5px;
     transition: background-color 0.2s ease;
 }
+
 .header .inner-button .inner-dropdown .inner-right p:hover {
     background-color: #f8f8f8;
-    border-radius: 5px;
 }
+
+/* Footer */
+.header .inner-button .inner-dropdown .inner-footer {
+    padding-top: 5px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 5px 0;
+}
+
+.header .inner-button .inner-dropdown .inner-infoUser {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.header .inner-button .inner-dropdown .inner-infoUser .inner-image img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.header .inner-button .inner-dropdown .inner-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.header .inner-button .inner-dropdown .inner-logout:hover {
+    background-color: #f8f8f8;
+}
+
+
 .header .inner-button .inner-link p {
     list-style: none;
     margin: 20px;
@@ -169,6 +234,7 @@
 
 
 }
+
 @media (max-width:991.98px) {
     .header {
         padding: 15px 20px;
@@ -188,6 +254,7 @@
         display: none;
     }
 }
+
 /* End Header */
 
 /* Footer */
@@ -362,7 +429,7 @@ footer {
 /*End  Input search */
 
 /* Job list */
-.inner-text {
+.inner-job .inner-text {
     font-size: 28px;
     font-weight: bold;
     color: #333;
@@ -457,14 +524,17 @@ footer {
 .inner-tag .inner-text {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
     color: #222;
+    margin-bottom: 20px;
 }
 
 .inner-tag .tag-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    position: relative;
 
 }
 
@@ -606,19 +676,20 @@ footer {
 /* end Button */
 
 /* list-company */
-.list-company .inner-text {
+.inner-company .inner-text {
     font-size: 24px;
     font-weight: bold;
     color: #222;
     margin-bottom: 20px;
-    text-align: center;
 }
 
 .list-company {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
-    padding: 20px;
+    padding: 10px;
+    position: relative;
 }
 
 .list-company .inner-card {
@@ -631,6 +702,12 @@ footer {
     padding: 20px;
     text-align: center;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-company .inner-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 1024px) {
@@ -735,6 +812,35 @@ footer {
     margin: 0;
 }
 
+.search-list {
+    display: flex;
+    padding: 0 80px;
+}
+
+.search-list .search-left {
+    flex: 2;
+    padding: 0 20px;
+}
+
+.search-list .search-right .search-image {
+    width: 100%;
+    height: auto;
+    /* Đảm bảo chiều cao tự điều chỉnh theo tỉ lệ */
+    display: flex;
+    /* Để căn giữa ảnh */
+    align-items: center;
+    justify-content: center;
+}
+
+.search-list .search-right .search-image img {
+    width: 100%;
+    /* Hoặc max-width: 100% để giữ tỉ lệ */
+    height: auto;
+    /* Giữ tỉ lệ khung hình, tránh méo ảnh */
+    object-fit: contain;
+    /* Giữ toàn bộ ảnh mà không bị cắt */
+}
+
 .search-card {
     display: flex;
     background-color: #EDF2FC;
@@ -834,35 +940,6 @@ footer {
     align-items: center;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.95);
-    width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    height: 30vh;
-    overflow-y: auto;
-    margin-top: 10px;
-    z-index: 1;
-}
-
-.dropdown-content input[type="checkbox"],
-.dropdown-content label {
-
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    color: #333;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.drop-show {
-    display: block !important;
-}
-
 /* end list tag */
 
 /* detail company */
@@ -876,21 +953,21 @@ footer {
 
 .detail-company .inner-head .inner-image {
     width: 100%;
-    max-height: 500px;
+    max-height: 400px;
     height: 50vh;
     overflow: hidden;
 }
 
 .detail-company .inner-head .inner-image img {
     width: 100%;
-    height: 100%;
+    height: 400px;
     object-fit: cover;
 }
 
 .detail-company .inner-head .inner-logo {
     position: absolute;
     top: 70%;
-    left: 80px;
+    left: 55px;
     transform: translateY(-50%);
     background: #fff;
     border: 1px solid #ddd;
@@ -912,7 +989,7 @@ footer {
 .detail-company .inner-head .inner-text {
     flex: 1;
     margin-left: 180px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .detail-company .inner-head .inner-text .inner-title {
@@ -979,3 +1056,289 @@ footer {
 }
 
 /* end detail company */
+
+/* Login */
+.container-login {
+    display: flex;
+    height: 80vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container-login .inner-left {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    /* Thêm padding để không bị sát viền */
+}
+
+.container-login .inner-left h1 {
+    margin-top: 120px;
+    font-size: 42px;
+    font-weight: 900;
+    color: #005EF0;
+    text-shadow: 3px 3px 10px rgba(0, 94, 240, 0.3);
+    line-height: 1.3;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 90%;
+}
+
+@media (max-width: 768px) {
+    .container-login .inner-left h1 {
+        font-size: 32px;
+        margin-top: 80px;
+    }
+}
+
+
+.container-login .inner-right {
+    background: #0F75BC;
+    ;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-login .inner-right .login {
+    background: #ffffff;
+    width: 500px;
+    padding: 30px;
+    border-radius: 20px;
+    border: solid 5px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.1);
+    color: #007bff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-login .inner-right .login .login-title {
+    margin-bottom: 16px;
+}
+
+.container-login .inner-right .login .input-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+
+.container-login .inner-right .login .input-box input {
+    width: 100%;
+    padding: 10px 16px 10px 38px;
+    border-radius: 9px;
+    border: solid 3px transparent;
+    background: rgb rgba(255, 255, 255, 0.1);
+    outline: none;
+    caret-color: #005EF0;
+    color: #005EF0;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.container-login .inner-right .login .input-box input:focus {
+    border: solid 3px rgba(255, 255, 255, 0.25);
+}
+
+.container-login .inner-right .login .input-box input::placeholder {
+    border: solid 3px rgba(255, 255, 255, 0.75);
+}
+
+.container-login .inner-right .login .input-box input::-ms-reveal {
+    filter: invert(100%)
+}
+
+.container-login .inner-right .login .input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 14px;
+    color: #0F75BC;
+    ;
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+.container-login .inner-right .login .input-box input:focus+i {
+    color: #0F75BC;
+    ;
+}
+
+.container-login .inner-right .login .remember-forgot-box {
+    display: flex;
+    width: 100%;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+
+.container-login .inner-right .login .remember-forgot-box h5 {
+    font-weight: normal;
+}
+
+.container-login .inner-right .login .login-button {
+    width: 100%;
+    border: 1px solid #0F75BC;
+    ;
+    background: #0F75BC;
+    ;
+    border-radius: 20px;
+    padding: 10px;
+    color: #ffffff;
+    font-weight: 600;
+
+}
+
+/* register */
+.container-register {
+    display: flex;
+    height: 80vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container-register .inner-left {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background: #0F75BC;
+    /* Thêm padding để không bị sát viền */
+}
+
+.container-register .inner-left h1 {
+    margin-top: 120px;
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 3px 3px 10px rgba(0, 94, 240, 0.3);
+    line-height: 1.3;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 90%;
+}
+
+@media (max-width: 768px) {
+    .container-register .inner-left h1 {
+        font-size: 32px;
+        margin-top: 80px;
+    }
+}
+
+
+.container-register .inner-right {
+    background: #ffffff;
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-register .inner-right .register {
+    background: #ffffff;
+    width: 500px;
+    padding: 30px;
+    border-radius: 20px;
+    border: solid 5px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.1);
+    color: #0F75BC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-register .inner-right .register .register-title {
+    margin-bottom: 16px;
+}
+
+.container-register .inner-right .register .input-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+
+.container-register .inner-right .register .input-box input {
+    width: 100%;
+    padding: 10px 16px 10px 38px;
+    border-radius: 9px;
+    border: solid 3px transparent;
+    background: rgb rgba(255, 255, 255, 0.1);
+    outline: none;
+    caret-color: #0F75BC;
+    color: #0F75BC;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.container-register .inner-right .register .input-box input:focus {
+    border: solid 3px rgba(255, 255, 255, 0.25);
+}
+
+.container-register .inner-right .register .input-box input::placeholder {
+    border: solid 3px rgba(255, 255, 255, 0.75);
+}
+
+.container-register .inner-right .register .input-box input::-ms-reveal {
+    filter: invert(100%)
+}
+
+.container-register .inner-right .register .input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 14px;
+    color: #0F75BC;
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+.container-register .inner-right .register .input-box input:focus+i {
+    color: #0F75BC;
+}
+
+.container-register .inner-right .register .remember-forgot-box {
+    display: flex;
+    width: 100%;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+
+.container-register .inner-right .register .remember-forgot-box h5 {
+    font-weight: normal;
+}
+
+.container-register .inner-right .register .error {
+    margin: 0;
+    font-size: 14px;
+    color: red;
+}
+
+.container-register .inner-right .register .register-button {
+    width: 100%;
+    border: 1px solid #0F75BC;
+    background: #0F75BC;
+    border-radius: 20px;
+    padding: 10px;
+    color: #ffffff;
+    font-weight: 600;
+
+}
+
+/* end registerregister */

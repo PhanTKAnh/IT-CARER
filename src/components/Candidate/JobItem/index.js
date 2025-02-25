@@ -15,16 +15,15 @@ function JobItem(props) {
                             <span><HeartOutlined /></span>
                         </div>
                         <div className='company-name'>
-                            <p>{item.company.name}</p>
+                            <p>{item.company.CompanyName}</p>
                         </div>
                         <div className='infomaition'>
-                        <div  className='position'>
-                        <p>{item?.cities?.map((city) => (          
-                                  <span key={item._id}>
-                                  {city.name} , 
-                                  </span>
-                                ))}</p>
-                            
+                            <div className='position'>
+                                <p>
+                                    {item?.cities?.map(city => city.CityName).join(", ")}
+                                </p>
+
+
                             </div>
                             <div className='salary'>
                                 <p>{item.Salary}</p>

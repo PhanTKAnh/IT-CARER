@@ -18,7 +18,7 @@ function TagItem(props) {
               </div>
               <div className="inner-content">
                 <p className="inner-text">{tag.TagsName}</p>
-                <p className="inner-count">{countJobs[tag._id] ?? 0} việc làm</p>
+                <p className="inner-count">{tag.jobCount} việc làm</p>
               </div>
             </div>
           </NavLink>

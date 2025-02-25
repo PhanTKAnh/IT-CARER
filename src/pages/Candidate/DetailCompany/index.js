@@ -2,8 +2,6 @@ import { DribbbleOutlined, EnvironmentOutlined, UngroupOutlined } from '@ant-des
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCompanyDetail } from '../../../sevices/company.sevices';
-import { getCompanyJobs } from '../../../sevices/job.sevices';
-import { getListCities } from '../../../sevices/city.sevices';
 import JobsList from '../../../components/Candidate/JobsList';
 
 function DetailCompany() {
@@ -12,38 +10,12 @@ function DetailCompany() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const companyData = await getCompanyDetail(slugCompany);
-                const jobsData = await getCompanyJobs(companyData._id);
-                const cities = await getListCities();
-
-                setCompanyDetail(formatData(companyData, jobsData, cities));
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
-            }
+           const company = await getCompanyDetail(slugCompany);
+           setCompanyDetail(company);
         };
 
         fetchData();
     }, [slugCompany]);
-
-    const formatData = (companyData, jobsData, cities) => {
-        const dataCity = cities.reduce((acc, city) => ({
-            ...acc,
-            [city._id]: city.CityName
-        }), {});
-        return {
-            company: companyData,
-            jobs: jobsData.map(({ IdCity, ...job }) => ({
-                ...job,
-                cities: IdCity?.map(cityId => ({
-                    id: cityId,
-                    name: dataCity[cityId] || "N/A"
-                })) || [],
-            })),
-        };
-    };
-    console.log(companyDetail)
-
     return (
         <div className="container">
             <div className='detail-company'>
@@ -73,6 +45,12 @@ function DetailCompany() {
                                 <div className='inner-desc'>
                                     {companyDetail.company.Description}
                                 </div>
+                                <div className='inner-list'>
+                            <h3>Việc đang tuyển</h3>
+                            <div className='jobs-list'>
+                            <JobsList jobsList={companyDetail.jobs} />
+                            </div>
+                        </div>
                             </div>
                             <div className='inner-right'>
                                 <div className='inner-text'>
@@ -82,10 +60,7 @@ function DetailCompany() {
                                 </div>
                             </div>
                         </div>
-                        <div className='inner-list'>
-                            <h3>Việc đang tuyển</h3>
-                            <JobsList jobsList={companyDetail.jobs} />
-                        </div>
+                       
                     </div>
                 )}
             </div>

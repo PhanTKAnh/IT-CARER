@@ -3,8 +3,6 @@ import CompanyItem from "../../../components/Candidate/CompanyItem";
 import ButtonPagination from "../../../components/button";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { getListCities } from "../../../sevices/city.sevices";
-import { getListJob } from "../../../sevices/job.sevices";
 import { getListCompany } from "../../../sevices/company.sevices";
 
 function CompanyList() {
@@ -14,19 +12,8 @@ function CompanyList() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const [companies, jobs, cities] = await Promise.all([
-                getListCompany(),
-                getListJob(),
-                getListCities()
-            ]);
-
-            setDataCompany(companies.map(company => ({
-                ...company,
-                jobs: jobs.filter(job => job.IdCompany === company._id),
-                cities: cities.filter(city =>
-                    [...new Set(jobs.filter(job => job.IdCompany === company._id).flatMap(job => job.IdCity))].includes(city._id)
-                )
-            })));
+           const companies = await getListCompany();
+           setDataCompany(companies)
         };
         fetchApi();
     }, []);
