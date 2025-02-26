@@ -30,13 +30,14 @@ function FilterSearch({ dataTag }) {
   useEffect(() => {
     const params = new URLSearchParams();
 
-    Object.entries(filters).forEach(([key, value]) => {
+    for(const key in filters){
+      const value  = filters[key];
       if (Array.isArray(value) && value.length) {
         params.set(key, value.join(","));
-      } else if (typeof value === "string" && value) {
-        params.set(key, value);
-      }
-    });
+    } else if (typeof value === "string" && value) {
+        params.set(key, value); 
+    }
+    }
 
     navigate(`/search?${params.toString()}`, { replace: true });
   }, [filters, navigate]);

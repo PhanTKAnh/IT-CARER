@@ -1,14 +1,12 @@
 import { get } from "../untils/request";
 
-export const getSearch = async (keyword, city, tag) => {
+export const getSearch = async (filters) => {
     const params = new URLSearchParams();
 
-    if (keyword) params.append("keyword", keyword);
-    if (city) {
-        params.append("city", city);
-    }
-    if (tag) {
-        params.append("tag", tag);
+    for( const key in filters){
+        if(filters[key]){
+            params.append(key, filters[key]);
+        }
     }
 
     const result = await get(`search?${params.toString()}`);
