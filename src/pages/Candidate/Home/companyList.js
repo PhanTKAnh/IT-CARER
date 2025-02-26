@@ -12,8 +12,8 @@ function CompanyList() {
 
     useEffect(() => {
         const fetchApi = async () => {
-           const companies = await getListCompany();
-           setDataCompany(companies)
+            const companies = await getListCompany();
+            setDataCompany(companies)
         };
         fetchApi();
     }, []);
@@ -23,13 +23,13 @@ function CompanyList() {
 
     return (
         <div className="container">
+            <h1>Nhà tuyển dụng hàng đầu</h1>
             <div className="inner-company">
-                <div className="inner-text">Nhà tuyển dụng hàng đầu</div>
+                <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
                 <div className="list-company">
-                    <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
                     <CompanyItem dataCompany={displayed} />
-                    <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
                 </div>
+                <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
             </div>
             <div className="pagination-buttons">
                 <span>{page}/{totalPages}</span>

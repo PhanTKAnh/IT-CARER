@@ -36,11 +36,10 @@ function TagList() {
 
     return (
         <div className="container">
+            <h2>Chọn ngôn ngữ bạn quan tâm</h2>
             <div className="inner-tag">
-                <div className="inner-text">Chọn ngôn ngữ bạn quan tâm</div>
-
+                <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
                 <div className="tag-list">
-                    <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
                     {loading ? (
                         Array.from({ length: pageSize }).map((_, index) => (
                             <div key={index} className="inner-card">
@@ -54,14 +53,14 @@ function TagList() {
                             </div>
                         ))
                     ) : (
-                        <TagItem dataTag={displayed}/>
+                        <TagItem dataTag={displayed} />
                     )}
-                    <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
-                </div>
 
-                <div className="pagination-buttons">
-                    <span>{page} / {totalPages}</span>
                 </div>
+                <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
+            </div>
+            <div className="pagination-buttons">
+                <span>{page} / {totalPages}</span>
             </div>
         </div>
     );

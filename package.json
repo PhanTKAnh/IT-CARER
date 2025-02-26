@@ -7,7 +7,6 @@
     "antd": "^5.23.4",
     "cra-template": "1.2.0",
     "jquery": "^3.7.1",
-    "md5": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

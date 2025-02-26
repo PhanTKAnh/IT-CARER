@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { EyeInvisibleOutlined, EyeOutlined, UserOutlined } from "@ant-design/icons"
 import { message } from "antd";
 import { useState } from "react";
-import md5 from "md5";
 import { postRegisterCandidate } from "../../../sevices/candidate.sevices";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../../untils/validate";
@@ -29,7 +28,7 @@ function Register() {
         const option = {
             FullName: data.FullName,
             Email: data.Email,
-            Password: md5(data.Password),
+            Password: data.Password,
         };
 
         try {

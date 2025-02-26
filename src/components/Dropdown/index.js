@@ -3,15 +3,25 @@ import { DownOutlined, HeartOutlined, LogoutOutlined, ReconciliationOutlined, Se
 import { NavLink } from "react-router-dom";
 import logo from "../../asset/image/logo.png";
 import { getCookie } from "../../helpers/cookie";
+import { getProfieCandidate } from "../../sevices/candidate.sevices";
 
 function DropDown() {
     const tokenCandidate = getCookie("tokenCandidate");
     const [isOpen, setIsOpen] = useState(false);
+    const [dataCandidate,setDataCandidate] = useState({});
     const dropdownRef = useRef(null);
 
     const handleOnclick = () => {
         setIsOpen(!isOpen);
     };
+
+    useEffect(() =>{
+        const fetchApi= async () => {
+            const candidate = await getProfieCandidate(tokenCandidate);
+            setDataCandidate(candidate);
+        };
+        fetchApi();
+    },[])
 
     // Khi click bên ngoài dropdown => tự động đóng
     useEffect(() => {
@@ -36,7 +46,7 @@ function DropDown() {
                     width="28"
                     src="https://static.careerlink.vn/web/images/common/avatar_placeholder.png"
                 />
-                <p> {tokenCandidate ? "Tên Người Dùng" : "Đăng ký"} <DownOutlined /></p>
+                <p> {tokenCandidate ? <>{dataCandidate.FullName}</> : "Đăng ký"} <DownOutlined /></p>
             </button>
 
             {isOpen && (
@@ -78,7 +88,7 @@ function DropDown() {
                                     />
                                 </div>
                                 <div className="inner-text">
-                                    <p>Nguyễn Văn A</p>
+                                    <p>{dataCandidate.FullName}</p>
                                     <p>Tài khoản</p>
                                 </div>
                             </div>
