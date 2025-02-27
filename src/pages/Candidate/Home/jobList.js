@@ -4,14 +4,18 @@ import JobItem from "../../../components/Candidate/JobItem";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
 import ButtonPagination from "../../../components/button";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function JobList() {
     const [dataJob, setDataJob] = useState([]);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
     const pageSize = 15; // 5 hàng x 3 cột = 15 job mỗi trang
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const jobs = await getListJob();
                 setDataJob(jobs);
@@ -30,6 +34,7 @@ function JobList() {
             <h2>Việc làm hấp dẫn</h2>
             <div className="inner-job">
                 <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
+                
                 <div className="job-list">{displayedJobs.length ? <JobItem dataJob={displayedJobs} /> : <p>Không có dữ liệu</p>}</div>
                 <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
             </div>

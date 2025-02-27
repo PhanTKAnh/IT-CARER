@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import TagItem from "../../../components/Candidate/TagItem";
 import { getTagList } from "../../../sevices/tag.sevices";
-import { getListJob } from "../../../sevices/job.sevices";
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import ButtonPagination from "../../../components/button";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
@@ -10,7 +9,6 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 function TagList() {
     const [dataTag, setDataTag] = useState([]);
-    const [countJobs, setCountJobs] = useState({});
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const pageSize = 6;

@@ -1,10 +1,12 @@
 import { HeartOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 function JobItem(props) {
     const { dataJob } = props
     return (
         <>
             {dataJob.map(item => (
-                <div key={item._id} className="inner-card">
+                <NavLink to={`/tim-viec-lam/${item.slug}`}>
+                    <div key={item._id} className="inner-card">
                     <div className="inner-left">
                         <img src={item.avatar} />
                     </div>
@@ -31,6 +33,7 @@ function JobItem(props) {
                         </div>
                     </div>
                 </div>
+                </NavLink>
             ))}
         </>
     )

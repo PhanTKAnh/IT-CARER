@@ -1,6 +1,7 @@
 import PrivateRoute from "../components/Candidate/PrivateRoute";
 import LayouCandidate from "../layout/layoutCadidate";
 import DetailCompany from "../pages/Candidate/DetailCompany";
+import DetailJob from "../pages/Candidate/DetailJob";
 import Home from "../pages/Candidate/Home";
 import Login from "../pages/Candidate/Login";
 import LogOut from "../pages/Candidate/LogOut";
@@ -30,7 +31,11 @@ export const routes = [
             {
                 path: "/:slugCompany",
                 element:<DetailCompany/>
-            },           
+            },
+            {
+                path: "/tim-viec-lam/:slugJob",
+                element:<DetailJob/>
+            },            
             {
                 path: "/nguoi-tim-viec/register",
                 element:<Register/>
