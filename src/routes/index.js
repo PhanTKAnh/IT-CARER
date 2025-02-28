@@ -2,6 +2,10 @@ import PrivateRoute from "../components/Candidate/PrivateRoute";
 import LayouCandidate from "../layout/layoutCadidate";
 import DetailCompany from "../pages/Candidate/DetailCompany";
 import DetailJob from "../pages/Candidate/DetailJob";
+import ForgetPassword from "../pages/Candidate/ForgetPassword/ForgetPassword";
+
+import OtpPassword from "../pages/Candidate/ForgetPassword/OtpPassword";
+import ResetPassword from "../pages/Candidate/ForgetPassword/ResetPassword";
 import Home from "../pages/Candidate/Home";
 import Login from "../pages/Candidate/Login";
 import LogOut from "../pages/Candidate/LogOut";
@@ -52,7 +56,19 @@ export const routes = [
                     element:<LogOut/>,
                 }, 
             ]
-            }
+            },          
+            {
+                path: "/nguoi-tim-viec/reset/forgotPassword",
+                element:<ForgetPassword/>,
+            }, 
+            {
+                path: "/nguoi-tim-viec/reset/otpPassword",
+                element:<OtpPassword/>,
+            }, 
+            {
+                path: "/nguoi-tim-viec/reset/resetPassword",
+                element:<ResetPassword/>,
+            }, 
         ]
     }
 ]

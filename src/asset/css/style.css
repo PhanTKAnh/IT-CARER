@@ -1697,3 +1697,69 @@ b .job-list .inner-card:hover {
     color: #555;
 }
 /* end detail job  */
+
+.container-password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+.reset-password {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.reset-password h1 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.reset-password .send-email p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.reset-password .send-email  .input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.reset-password .send-email  .input-box input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.reset-password .send-email  .input-box i {
+    position: absolute;
+    right: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+.send-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}

@@ -89,9 +89,7 @@ function Register() {
                         {errorMessage && <p className="error">{errorMessage}</p>}
 
                         <section className="remember-forgot-box">
-                            <a className="forgot-password" href="#">
-                                <h5>Quên mật khẩu?</h5>
-                            </a>
+                           
                         </section>
 
                         <button type="submit" className="register-button">

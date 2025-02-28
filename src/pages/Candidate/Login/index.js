@@ -68,8 +68,16 @@ function Login() {
                         <i onClick={handlePassword}> {showPassword ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
                     </section>
                     {errors.Password && <span className="error">{errors.Password.message}</span>}
+                    
+                    <section className="remember-forgot-box">
+                        <NavLink className="forgot-password" to={"/nguoi-tim-viec/reset/forgotPassword"}>
+                            <h5>Quên mật khẩu?</h5>
+                        </NavLink>
+                    </section>
+
 
                     {errorMessage && <p className="error">{errorMessage}</p>}
+
 
                     <button className="login-button">Login</button>
 
