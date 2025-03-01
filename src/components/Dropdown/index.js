@@ -17,11 +17,14 @@ function DropDown() {
 
     useEffect(() =>{
         const fetchApi= async () => {
-            const candidate = await getProfieCandidate(tokenCandidate);
-            setDataCandidate(candidate);
+            if(tokenCandidate){
+                const candidate = await getProfieCandidate(tokenCandidate);
+                setDataCandidate(candidate);
+            }
+            
         };
         fetchApi();
-    },[])
+    },[tokenCandidate])
 
     // Khi click bên ngoài dropdown => tự động đóng
     useEffect(() => {

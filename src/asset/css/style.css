@@ -1463,7 +1463,7 @@ b .job-list .inner-card:hover {
     font-weight: normal;
 }
 
-.container-register .inner-right .register .error {
+ .error {
     margin: 0;
     font-size: 14px;
     color: red;
@@ -1489,14 +1489,15 @@ b .job-list .inner-card:hover {
     gap: 20px; /* Khoảng cách giữa hai khối */
 }
 
-.job-left {
+.detail-job .job-left {
+    position: relative;
     flex: 2; /* Chiếm 2 phần */
     background-color: #f8f9fa; /* Màu nền nhẹ để phân biệt */
     padding: 20px;
     border-radius: 8px;
 }
 
-.job-right {
+.detail-job .job-right {
     flex: 1; /* Chiếm 1 phần */
     background-color: #ffffff;
     padding: 20px;
@@ -1504,13 +1505,16 @@ b .job-list .inner-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /* Hình ảnh chính */
-.job-image img {
+.detail-job .job-left .job-image img {
     width: 100%;
     border-radius: 8px;
 }
 
 /* Logo công ty */
-.job-logo img {
+.detail-job .job-left .job-logo img {
+    position: absolute;
+    top: 380px;
+    left: 60px;
     width: 100px;
     height: 100px;
     border-radius: 8px;
@@ -1519,23 +1523,23 @@ b .job-list .inner-card:hover {
 }
 
 /* Tên công việc */
-.job-text {
+.detail-job .job-left .job-text {
     text-align: center;
 }
 
-.job-name {
+.detail-job .job-left .job-name {
     font-size: 20px;
     font-weight: bold;
     color: #333;
 }
 
-.company-name {
+.detail-job .job-left .company-name {
     font-size: 16px;
     color: #555;
 }
 
 /* Thông tin công việc */
-.info-job {
+.detail-job .job-left .info-job {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1545,20 +1549,20 @@ b .job-list .inner-card:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.info-job div {
+.detail-job .job-left .info-job div {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
     color: #444;
 }
-.info-button {
+.detail-job .job-left .info-button {
     display: flex;
     gap: 10px; /* Khoảng cách giữa hai nút */
     margin-top: 20px;
 }
 
-.info-button button {
+.detail-job .job-left .info-button button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -1568,16 +1572,16 @@ b .job-list .inner-card:hover {
     transition: all 0.3s ease;
 }
 
-.info-button button:first-child {
+.detail-job .job-left .info-button button:first-child {
     background-color: #007bff;
     color: white;
 }
 
-.info-button button:first-child:hover {
+.detail-job .job-left .info-button button:first-child:hover {
     background-color: #0056b3;
 }
 
-.info-button button:last-child {
+.detail-job .job-left .info-button button:last-child {
     background-color: white;
     color: #007bff;
     border: 2px solid #007bff;
@@ -1586,20 +1590,20 @@ b .job-list .inner-card:hover {
     gap: 5px;
 }
 
-.info-button button:last-child:hover {
+.detail-job .job-left .info-button button:last-child:hover {
     background-color: #007bff;
     color: white;
 }
 
 /* Nội dung công việc */
-.job-content {
+.detail-job .job-left .job-content {
     padding: 10px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.job-content ul {
+.detail-job .job-left .job-content ul {
     list-style: none;
     display: flex;
     gap: 10px;
@@ -1607,7 +1611,7 @@ b .job-list .inner-card:hover {
     margin-bottom: 10px;
 }
 
-.job-content ul li {
+.detail-job .job-left .job-content ul li {
     background: #007bff;
     color: #fff;
     padding: 8px 12px;
@@ -1616,23 +1620,23 @@ b .job-list .inner-card:hover {
     font-size: 14px;
 }
 
-.job-content ul li:hover {
+.detail-job .job-left .job-content ul li:hover {
     background: #0056b3;
 }
 
 /* Mô tả công việc */
-.job-desc h1 {
+.detail-job .job-left .job-desc h1 {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.job-desc p {
+.detail-job .job-left .job-desc p {
     font-size: 14px;
     line-height: 1.6;
 }
 
 /* Thông tin kinh nghiệm */
-.experiece-desc p {
+.detail-job .job-left .experiece-desc p {
     font-size: 14px;
     color: #555;
     padding: 10px;
@@ -1641,13 +1645,13 @@ b .job-list .inner-card:hover {
 }
 
 /* Phần thông tin chi tiết */
-.info-desc {
+.detail-job .job-left .info-desc {
     display: flex;
     gap: 20px;
     margin-top: 10px;
 }
 
-.info-left, .info-right {
+.detail-job .job-left .info-desc .info-left, .info-right {
     flex: 1;
     background: #fff;
     padding: 10px;
@@ -1655,44 +1659,44 @@ b .job-list .inner-card:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.info-left div, .info-right div {
+.detail-job .job-left .info-desc  .info-left div, .info-right div {
     margin-bottom: 10px;
 }
 
-.info-left span, .info-right span {
+.detail-job .job-left .info-desc  .info-left span,.detail-job .job-left .info-desc .info-right span {
     font-weight: bold;
     color: #007bff;
 }
 
 /* Phần liên hệ công ty */
-.contact-company {
+.detail-job .job-left .contact-company {
     background: #f8f9fa;
     padding: 10px;
     border-radius: 8px;
 }
 
-.contact-company h1 {
+.detail-job .job-left .contact-company h1 {
     font-size: 18px;
 }
 
-.inner-contact p {
+.detail-job .job-left .inner-contact p {
     font-size: 14px;
     color: #333;
 }
 
 /* Phần về công ty */
-.about {
+.detail-job .job-left .about {
     background: #fff;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.about h1 {
+.detail-job .job-left .about h1 {
     font-size: 18px;
 }
 
-.about p {
+.detail-job .job-left .about p {
     font-size: 14px;
     color: #555;
 }

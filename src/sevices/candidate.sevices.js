@@ -17,3 +17,18 @@ export const getProfieCandidate = async(token) =>{
     const result = await get("candidate/profie", token);
     return result;
 }
+// [POST] /candidate/reset/forgotPassword
+export const postForgotPassword = async (option) => {
+    const result = await post("candidate/reset/forgotPassword", option, null); 
+    return result;
+};
+// [POST] /candidate/reset/otpPassword
+export const postOtpPassword = async (option) =>{
+    const result = await post("candidate/reset/otpPassword", option, null);
+    return result;
+}
+// [POST] /candidate/reset/otpPassword
+export const postResetPassword = async (option,token) =>{
+    const result = await post("candidate/reset/resetPassword", option, token);
+    return result;
+}
