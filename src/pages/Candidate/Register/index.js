@@ -12,7 +12,7 @@ function Register() {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    
+
 
     const {
         register,
@@ -33,9 +33,12 @@ function Register() {
 
         try {
             const response = await postRegisterCandidate(option);
-            if (response.code == 200) {
-                setCookie("tokenCandidate", response.tokenCandidate, 1);
-                 navigate("/");
+            if (response.code === 200) {
+                // Lưu token vào cookie hoặc localStorage
+                setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 giờ (60 phút)
+                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 ngày
+                
+                navigate("/");
             } else {
                 setErrorMessage(response.message || "Đăng ký thất bại, vui lòng thử lại!");
             }
@@ -89,7 +92,7 @@ function Register() {
                         {errorMessage && <p className="error">{errorMessage}</p>}
 
                         <section className="remember-forgot-box">
-                           
+
                         </section>
 
                         <button type="submit" className="register-button">

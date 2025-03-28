@@ -22,7 +22,7 @@ function Search() {
     };
 
     fetchApi();
-  }, [searchParams]); // Theo dõi toàn bộ searchParams, nếu có thay đổi thì fetch lại dữ liệu
+  }, [searchParams]); 
 
   return (
     <div className="container">

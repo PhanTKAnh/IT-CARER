@@ -26,10 +26,11 @@ function OtpPassword() {
             const response = await postOtpPassword({ otp: data.otp });
 
             if (response.code === 200) {
-                setCookie("tokenCandidate", response.tokenCandidate, 1);
+                setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 giờ (60 phút)
+                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 ngày
                 navigate("/nguoi-tim-viec/reset/resetPassword");
             } else {
-                setErrorMessage("Không nhận được phản hồi hợp lệ từ server");
+                setErrorMessage("OTP không hợp lệ!");
             }
 
         } catch (error) {

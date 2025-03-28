@@ -32,9 +32,9 @@ function Slide() {
 
     return (
         <div className="inner-slide">
-            <img src="https://static.careerlink.vn/web/images/covers/banner_zalo_oa.jpg" class="slick-lazyload-error" />
-            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" class="slick-lazyload-error" />
-            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" class="slick-lazyload-error" />
+            <img src="https://static.careerlink.vn/web/images/covers/banner_zalo_oa.jpg" className="slick-lazyload-error" />
+            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" className="slick-lazyload-error" />
+            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" className="slick-lazyload-error" />
 
         </div>
     );

@@ -4,23 +4,27 @@ import JobItem from "../../../components/Candidate/JobItem";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
 import ButtonPagination from "../../../components/button";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { getCookie } from "../../../helpers/cookie";
 
 function JobList() {
     const [dataJob, setDataJob] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const pageSize = 15; // 5 hàng x 3 cột = 15 job mỗi trang
+    const tokenCandidate = getCookie("tokenCandidate");
+    const pageSize = 15;
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const jobs = await getListJob();
+                const jobs = await getListJob(tokenCandidate);
                 setDataJob(jobs);
             } catch (error) {
                 console.error("Failed to fetch data:", error);
+            } finally {
+                setLoading(false); // ✅ Tắt loading khi fetch xong
             }
         };
         fetchData();
@@ -33,11 +37,38 @@ function JobList() {
         <div className="container">
             <h2>Việc làm hấp dẫn</h2>
             <div className="inner-job">
-                <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
+                <ButtonPagination
+                    title={<LeftOutlined />}
+                    onClick={() => handlePrevPage(page, setPage)}
+                    disabled={page === 1}
+                />
                 
-                <div className="job-list">{displayedJobs.length ? <JobItem dataJob={displayedJobs} /> : <p>Không có dữ liệu</p>}</div>
-                <ButtonPagination title={<RightOutlined />} onClick={() => handleNextPage(page, totalPages, setPage)} disabled={page === totalPages} />
+                <div className="job-list">
+                    {loading ? (
+                        Array.from({ length: pageSize }).map((_, index) => (
+                            <div key={index} className="inner-card">
+                                <Skeleton height={80} width={80} className="skeleton-avatar" />
+                                <div className="skeleton-content">
+                                    <Skeleton height={20} width={"80%"} />
+                                    <Skeleton height={15} width={"60%"} />
+                                    <Skeleton height={15} width={"50%"} />
+                                </div>
+                            </div>
+                        ))
+                    ) : displayedJobs.length ? (
+                        <JobItem dataJob={displayedJobs} />
+                    ) : (
+                        <p>Không có dữ liệu</p>
+                    )}
+                </div>
+
+                <ButtonPagination
+                    title={<RightOutlined />}
+                    onClick={() => handleNextPage(page, totalPages, setPage)}
+                    disabled={page === totalPages}
+                />
             </div>
+
             <div className="pagination-buttons">
                 <span>{page}/{totalPages}</span>
             </div>

@@ -28,3 +28,32 @@ export const otpSchema = yup.object().shape({
     .oneOf([yup.ref("Password")], "Mật khẩu xác nhận không khớp!")
     .required("Bạn phải nhập lại mật khẩu!"),
 });
+
+export const applyModalSchema = yup.object().shape({
+    phone: yup
+      .string()
+      .matches(/^[0-9\s\-+.]{8,}$/, "Số điện thoại không hợp lệ")
+      .required("Vui lòng nhập số điện thoại"),
+  
+    cv: yup
+      .mixed()
+      .test("required", "Vui lòng chọn file hồ sơ", (value) => {
+        return value instanceof File; // Kiểm tra có file hay không
+      })
+      .test("fileSize", "File phải nhỏ hơn 3MB", (value) => {
+        return value instanceof File ? value.size <= 3 * 1024 * 1024 : false;
+      })
+      .test("fileType", "File không đúng định dạng", (value) => {
+        if (!(value instanceof File)) return false;
+        const allowedTypes = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "application/vnd.ms-excel",
+          "image/png",
+          "image/jpeg",
+        ];
+        return allowedTypes.includes(value.type);
+      }),
+  });
+  

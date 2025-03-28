@@ -11,12 +11,12 @@ export function getCookie(cname) {
     return "";
 }
 
-export function setCookie(cname, cvalue, exdays) {
-    let d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + "; path=/"; 
+export function setCookie(name, value, minutes) {
+    const date = new Date();
+    date.setTime(date.getTime() + minutes * 60 * 1000); 
+    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
 }
+
 
 export function deleteAllCookies() {
     const cookies = document.cookie.split(";");

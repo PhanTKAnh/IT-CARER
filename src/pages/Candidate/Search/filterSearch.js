@@ -28,29 +28,30 @@ function FilterSearch({ dataTag }) {
   const [filters, setFilters] = useState(getParamsFromURL);
 
   useEffect(() => {
-    const params = new URLSearchParams();
-
-    for(const key in filters){
-      const value  = filters[key];
+    const params = new URLSearchParams(location.search); // Bắt đầu từ URL hiện tại
+  
+    for (const key in filters) {
+      const value = filters[key];
       if (Array.isArray(value) && value.length) {
         params.set(key, value.join(","));
-    } else if (typeof value === "string" && value) {
-        params.set(key, value); 
+      } else if (typeof value === "string" && value) {
+        params.set(key, value);
+      } else {
+        params.delete(key); // Nếu giá trị rỗng, xóa khỏi URL
+      }
     }
-    }
-
+  
     navigate(`/search?${params.toString()}`, { replace: true });
-  }, [filters, navigate]);
+  }, [filters, navigate, location.search]); // Thêm `location.search` để theo dõi thay đổi URL
+  
 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => {
       const updatedFilters = { ...prev, [key]: value };
-      if (!value || (Array.isArray(value) && value.length === 0)) {
-        delete updatedFilters[key];
-      }
       return updatedFilters;
     });
   };
+  
 
   return (
     <div className="filter-container">

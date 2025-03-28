@@ -32,3 +32,8 @@ export const postResetPassword = async (option,token) =>{
     const result = await post("candidate/reset/resetPassword", option, token);
     return result;
 }
+// [POST] /candidate/login
+export const postRefreshToken = async( refreshToken) =>{
+    const result = await post("candidate/refresh-token", refreshToken, null);
+    return result;
+}

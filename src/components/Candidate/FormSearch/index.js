@@ -35,9 +35,7 @@ function FormSearch({ defaultKeyword, defaultCity }) {
     const params = new URLSearchParams(location.search);
     if (keyword.trim()) {
       params.set("keyword", keyword.trim());
-    } else {
-      params.delete("keyword");
-    }
+    } 
     if (selectedCity.length > 0) {
       params.set("city", selectedCity.join(","));
     } else {
@@ -45,7 +43,6 @@ function FormSearch({ defaultKeyword, defaultCity }) {
     }
     navigate(`/search?${params.toString()}`);
   };
-
   const handleCityChange = (values) => {
     setSelectedCity(values);
     const params = new URLSearchParams(location.search);
@@ -56,6 +53,7 @@ function FormSearch({ defaultKeyword, defaultCity }) {
     }
     navigate(`/search?${params.toString()}`);
   };
+
 
   return (
     <>

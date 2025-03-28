@@ -4,11 +4,11 @@ function SearchList(props) {
     return (
         <>
             {
-                jobsList.map(data => (
+                jobsList?.map(data => (
                     <div key={data._id} className="search-card">
                         <div className="inner-left">
                             <div className="inner-image">
-                                <img src={data?.company?.logo} alt="Company Avatar" />
+                                <img src={data?.company.logo} alt="Company logo" />
                             </div>
                         </div>
                         <div className="inner-right">

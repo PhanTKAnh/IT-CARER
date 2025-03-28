@@ -9,7 +9,7 @@ import { setCookie } from "../../../helpers/cookie";
 import { postLoginCandidate } from "../../../sevices/candidate.sevices";
 
 function Login() {
-    const navigate = useNavigate(); // Sửa lỗi useNavigate
+    const navigate = useNavigate(); 
     const [errorMessage, setErrorMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -18,19 +18,23 @@ function Login() {
         handleSubmit,
         formState: { errors }
     } = useForm({ resolver: yupResolver(loginSchema) });
-
     const onSubmit = async (data) => {
         setErrorMessage("");
-
+    
         const option = {
             Email: data.Email,
             Password: data.Password
         };
-
+    
         try {
             const response = await postLoginCandidate(option);
             if (response.code === 200) {
-                setCookie("tokenCandidate", response.tokenCandidate, 1);
+                setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 giờ (60 phút)
+                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 ngày
+                
+                
+                
+                message.success("Đăng nhập thành công!");
                 navigate("/");
             } else if (response.code === 401) {
                 setErrorMessage("Sai email hoặc mật khẩu!");
@@ -40,7 +44,7 @@ function Login() {
             message.error("Có lỗi xảy ra, vui lòng thử lại sau!");
         }
     };
-
+    
     const handlePassword = () => {
         setShowPassword(!showPassword);
     };

@@ -4,11 +4,10 @@ import { deleteAllCookies } from "../../../helpers/cookie";
 
 function LogOut() {
     const navigate = useNavigate();
-    deleteAllCookies(); 
     useEffect(() => {
-        
+        deleteAllCookies();
         navigate("/");       
-    }, [navigate]);      
+    }, [navigate]); 
 
     return null; 
 }
