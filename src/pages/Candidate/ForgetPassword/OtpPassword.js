@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { postOtpPassword } from "../../../sevices/candidate.sevices";
+import { postOtpPassword } from "../../../sevices/candidate/candidate.sevices";
 import { setCookie } from "../../../helpers/cookie";
 
 function OtpPassword() {

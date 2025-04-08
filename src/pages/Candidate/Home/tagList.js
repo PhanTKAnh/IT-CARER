@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import TagItem from "../../../components/Candidate/TagItem";
-import { getTagList } from "../../../sevices/tag.sevices";
+import { getTagList } from "../../../sevices/candidate/tag.sevices";
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import ButtonPagination from "../../../components/button";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import ButtonPagination from "../../../components/Candidate/button";
 
 function TagList() {
     const [dataTag, setDataTag] = useState([]);

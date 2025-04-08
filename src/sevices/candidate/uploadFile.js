@@ -1,4 +1,4 @@
-import { postFormData } from "../untils/request";
+import { postFormData } from "../../untils/request";
 
 // [POST] /upload-file
 export const uploadFile = async (formData) => {

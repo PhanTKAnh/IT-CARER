@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import CompanyItem from "../../../components/Candidate/CompanyItem";
-import ButtonPagination from "../../../components/button";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { getListCompany } from "../../../sevices/company.sevices";
+import { getListCompany } from "../../../sevices/candidate/company.sevices";
+import ButtonPagination from "../../../components/Candidate/button";
 
 function CompanyList() {
     const [dataCompany, setDataCompany] = useState([]);

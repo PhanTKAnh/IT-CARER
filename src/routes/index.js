@@ -1,9 +1,14 @@
 import JobSeekerLayout from "../components/Candidate/JobSeekerLayout";
 import PrivateRoute from "../components/Candidate/PrivateRoute";
 import SlideCandidate from "../components/Candidate/SlideCandidate";
+import LayoutAdmin from "../layout/layoutAdmin";
 import LayouCandidate from "../layout/layoutCadidate";
+import LayouEmployer from "../layout/layoutEmployer";
+import AdminCompanyDetail from "../pages/Admin/AdminCompanyDetail";
+import ManagerAdmin from "../pages/Admin/ManagerAdmin";
 import ApplicationJob from "../pages/Candidate/ApplicationJob";
 import ChangePassword from "../pages/Candidate/ChangePassword";
+import CompanyPage from "../pages/Candidate/Companypage";
 import DetailCompany from "../pages/Candidate/DetailCompany";
 import DetailJob from "../pages/Candidate/DetailJob";
 import ForgetPassword from "../pages/Candidate/ForgetPassword/ForgetPassword";
@@ -16,6 +21,11 @@ import MyCandidate from "../pages/Candidate/MyCandidate";
 import Register from "../pages/Candidate/Register";
 import SaveJobs from "../pages/Candidate/SaveJobs";
 import Search from "../pages/Candidate/Search";
+import ForgetAminPassword from "../pages/Employers/ForgetPassword/ForgetAminPassword";
+import OtpAdminPassword from "../pages/Employers/ForgetPassword/OtpAdminPassword";
+import ResetAdminPassword from "../pages/Employers/ForgetPassword/ResetPassword";
+import LoginEmployer from "../pages/Employers/LoginEmployers";
+import EmployerRegistration from "../pages/Employers/RegisterEmployer";
 
 export const routes = [
     {
@@ -29,6 +39,7 @@ export const routes = [
             { path: "/tim-viec-lam/:slugJob", element: <DetailJob /> },
             { path: "/nguoi-tim-viec/register", element: <Register /> },
             { path: "/nguoi-tim-viec/login", element: <Login /> },
+            { path: "/nha-tuyen-dung-hang-dau", element: <CompanyPage /> },
 
             // Bọc các trang trong PrivateRoute
             {
@@ -58,6 +69,33 @@ export const routes = [
             { path: "/nguoi-tim-viec/reset/forgotPassword", element: <ForgetPassword /> },
             { path: "/nguoi-tim-viec/reset/otpPassword", element: <OtpPassword /> },
             { path: "/nguoi-tim-viec/reset/resetPassword", element: <ResetPassword /> },
+        ]
+    },
+    {
+        path: "/nha-tuyen-dung",
+        element: <LayouEmployer />,
+        children: [
+            { path: "/nha-tuyen-dung/register", element: <EmployerRegistration/> },
+            { path: "/nha-tuyen-dung/login", element: <LoginEmployer/> },
+            { path: "/nha-tuyen-dung/reset/forgotPassword", element: <ForgetAminPassword /> },
+            { path: "/nha-tuyen-dung/reset/otpPassword", element: <OtpAdminPassword /> },
+            { path: "/nha-tuyen-dung/reset/resetPassword", element: <ResetAdminPassword /> },
+
+
+        ]
+    }, 
+    {
+        path: "/admin",
+        element: <LayoutAdmin/>,
+        children: [
+            {
+                path:"/admin/employer",
+                element:<ManagerAdmin/>
+            },
+            {
+                path:`/admin/employer/company/:slug`,
+                element:<AdminCompanyDetail/>
+            }
         ]
     }
 ];

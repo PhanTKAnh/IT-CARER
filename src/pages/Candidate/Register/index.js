@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { EyeInvisibleOutlined, EyeOutlined, UserOutlined } from "@ant-design/icons"
 import { message } from "antd";
 import { useState } from "react";
-import { postRegisterCandidate } from "../../../sevices/candidate.sevices";
+import { postRegisterCandidate } from "../../../sevices/candidate/candidate.sevices";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../../untils/validate";
 import { setCookie } from "../../../helpers/cookie";
@@ -11,7 +11,10 @@ import { setCookie } from "../../../helpers/cookie";
 function Register() {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState({
+        Password: false,
+        confirmPassword: false,
+    });
 
 
     const {
@@ -37,7 +40,7 @@ function Register() {
                 // Lưu token vào cookie hoặc localStorage
                 setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 giờ (60 phút)
                 setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 ngày
-                
+
                 navigate("/");
             } else {
                 setErrorMessage(response.message || "Đăng ký thất bại, vui lòng thử lại!");
@@ -48,9 +51,13 @@ function Register() {
         }
     };
 
-    const handlePassword = async () => {
-        setShowPassword(!showPassword);
-    }
+    const togglePassword = (field) => {
+        setShowPassword((prev) => ({
+            ...prev,
+            [field]: !prev[field],
+        }));
+    };
+
 
     return (
 
@@ -64,28 +71,28 @@ function Register() {
                     <form className="register" onSubmit={handleSubmit(onSubmit)}>
                         <h1 className="login-title">Người tìm việc đăng ký</h1>
 
-                        <section className="input-box">
+                        <div class="login__input-box">
                             <input type="text" placeholder="Họ và tên" {...register("FullName")} />
                             <i> <UserOutlined /></i>
 
-                        </section>
+                        </div>
                         {errors.FullName && <p className="error">{errors.FullName.message}</p>}
-                        <section className="input-box">
+                        <div class="login__input-box">
                             <input type="text" placeholder="Email" {...register("Email")} />
                             <i> <UserOutlined /></i>
-                        </section>
+                        </div>
                         {errors.Email && <span className="error">{errors.Email.message}</span>}
 
-                        <section className="input-box">
-                            <input type={showPassword ? "text" : "password"} placeholder="Mật khẩu" {...register("Password")} />
-                            <i onClick={handlePassword}> {showPassword ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
-                        </section>
+                        <div class="login__input-box">
+                            <input type={showPassword.Password ? "text" : "password"} placeholder="Mật khẩu" {...register("Password")} />
+                            <i onClick={() => togglePassword("Password")}> {showPassword.Password ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
+                        </div>
                         {errors.Password && <span className="error">{errors.Password.message}</span>}
 
-                        <section className="input-box">
-                            <input type={showPassword ? "text" : "password"} placeholder="Nhập lại mật khẩu" {...register("confirmPassword")} />
-                            <i onClick={handlePassword}> {showPassword ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
-                        </section>
+                        <div class="login__input-box">
+                            <input type={showPassword.confirmPassword ? "text" : "password"} placeholder="Nhập lại mật khẩu" {...register("confirmPassword")} />
+                            <i onClick={() => togglePassword("confirmPassword")}> {showPassword.confirmPassword ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
+                        </div>
                         {errors.confirmPassword && <span className="error">{errors.confirmPassword.message}</span>}
 
                         {/* Hiển thị lỗi từ server */}

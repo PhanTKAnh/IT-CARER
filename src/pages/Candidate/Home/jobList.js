@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getListJob } from "../../../sevices/job.sevices";
+import { getListJob } from "../../../sevices/candidate/job.sevices";
 import JobItem from "../../../components/Candidate/JobItem";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { getTotalPages, handleNextPage, handlePrevPage } from "../../../helpers/pagination";
-import ButtonPagination from "../../../components/button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { getCookie } from "../../../helpers/cookie";
+import ButtonPagination from "../../../components/Candidate/button";
 
 function JobList() {
     const [dataJob, setDataJob] = useState([]);
@@ -24,7 +24,7 @@ function JobList() {
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             } finally {
-                setLoading(false); // ✅ Tắt loading khi fetch xong
+                setLoading(false); 
             }
         };
         fetchData();

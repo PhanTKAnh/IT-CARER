@@ -1,4 +1,4 @@
-import { get, patch } from "../untils/request";
+import { get, patch } from "../../untils/request";
 
 // [GET] /jobs
 export const getListJob = async (tokenCandidate ) =>{

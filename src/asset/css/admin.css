@@ -1,0 +1,500 @@
+.admin-layout {
+  display: flex;
+  width: 100%;
+}
+
+
+.header-admin {
+  height: 64px;
+  color: white;
+  padding: 8px 20px;
+  position: fixed;
+  top: 0;
+  left: 20%;
+  width: calc(100% - 20%);
+  transition: left 0.3s ease, width 0.3s ease;
+  border-bottom: 1px solid #2c3e50;
+}
+.header-admin.collapsed {
+  left: 12%;
+  width: calc(100% - 12%);
+}
+.inner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#toggle-btn {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #005EF0;
+  cursor: pointer;
+}
+
+.inner-button {
+  display: flex;
+  align-items: center;
+}
+
+.inner-dropdown {
+  margin-left: 20px;
+}
+
+/* Sidebar Styles */
+.admin-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+
+.admin-sidebar.collapsed {
+  width: 12%;
+}
+.admin-navbar ul {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 20px;
+  gap: 10px;
+}
+
+.admin-navbar ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;   
+   padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.admin-navbar ul li a.collapsed {
+  justify-content: center;
+  padding: 12px 0; /* thu hẹp padding ngang cho gọn */
+}
+
+.admin-navbar ul li a.collapsed svg {
+  font-size: 24px; /* tăng kích thước icon nếu cần */
+}
+
+.admin-navbar ul li a.collapsed span{
+display: none;
+}
+.admin-navbar a:hover {
+  background: #f8f8f8;
+  color: #333;
+}
+
+
+/* Main Content Area */
+.admin-content {
+  padding: 20px;
+  margin-left: 20%;
+  margin-top: 64px;
+  width: calc(100% - 20%);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.admin-content.collapsed {
+  margin-left:12%;
+  width: calc(100% - 12%);
+}
+.hidden-title {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .header-admin {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*  */
+/* Dropdown container */
+.admin-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Button in dropdown */
+.admin-dropdown-btn {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+.admin-dropdown-btn img{
+  border-radius: 50%;
+  margin-right: 5px;
+  object-fit: cover;
+}
+.admin-dropdown-btn p{
+margin: 0;
+}
+/* Dropdown menu */
+.admin-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  width: 200px;
+  transition: opacity 0.3s ease;
+}
+
+/* Show dropdown when open */
+.admin-dropdown-container .admin-dropdown-menu {
+  display: block;
+}
+
+/* Inner part of the dropdown */
+.admin-dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Dropdown button styles */
+.admin-dropdown-btn-1,
+.admin-dropdown-btn-2 {
+  background-color: #005ef0;
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-dropdown-btn-1:hover,
+.admin-dropdown-btn-2:hover {
+  background-color: #0078e7;
+}
+.admin-logo{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.admin-logo img{
+  height: 70px;
+  object-fit: cover;
+}
+.admin-logo span {
+  font-size: 23px;
+  margin-right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.admin-logo.collapsed span{
+ display: none;
+}
+.admin-logo.collapsed {
+justify-content: center;
+}
+.admin-logo.collapsed img{
+  height: 80px;
+}
+
+/* table */
+.table-wrapper {
+  width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+
+.admin-table tr:hover {
+  background-color: #f0f8ff;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+
+/* Action buttons */
+.action-btn {
+  margin-right: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-btn.edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.action-btn.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 4px;
+  padding: 6px 12px;
+  background-color: #eee;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #1890ff;
+  color: white;
+}
+/* Tag styles */
+.ant-tag {
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.ant-tag.green {
+  background-color: #52c41a;
+  color: white;
+}
+
+.ant-tag.red {
+  background-color: #f5222d;
+  color: white;
+}
+/*  */
+.search-filter {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #fff;
+}
+
+.search-filter__header {
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.search-filter__body {
+  padding-top: 8px;
+}
+
+.search-filter__row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.search-filter__buttons {
+  flex: 1 1 48%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.search-filter__button {
+  padding: 6px 12px;
+  border: 1px solid #005EF0;
+  background-color: transparent;
+  color: #005EF0;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-filter__button:hover {
+  background-color: #005EF0;
+  color: white;
+}
+
+.search-filter__button--active {
+  background-color: #005EF0;
+  color: white;
+}
+
+.search-filter__form {
+  flex: 1 1 48%;
+}
+
+.search-filter__input-group {
+  display: flex;
+  width: 100%;
+}
+
+.search-filter__input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-filter__submit {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #005EF0;
+  color: white;
+  border: 1px solid #005EF0;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-filter__submit:hover {
+  background-color: #005EF0;
+}
+/*  */
+.admin-company {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-company__header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.admin-company__logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.admin-company__info {
+  flex: 1;
+}
+
+.admin-company__name {
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+.admin-company__status {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.admin-company__status--active {
+  background-color: #e6f4ea;
+  color: #0a7b42;
+}
+
+.admin-company__status--inactive {
+  background-color: #fbeaea;
+  color: #d93025;
+}
+
+.admin-company__status--pending {
+  background-color: #fff4e5;
+  color: #b66d00;
+}
+
+.admin-company__body {
+  margin-top: 24px;
+}
+
+.admin-company__section {
+  margin-bottom: 20px;
+}
+
+.admin-company__section-title {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 18px;
+  border-left: 4px solid #4a90e2;
+  padding-left: 10px;
+}
+
+.admin-company__loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  color: #666;
+}
+
+a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

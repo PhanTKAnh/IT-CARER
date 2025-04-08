@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import SearchCity from "./SeachCity";
 import { useState, useEffect, useCallback } from "react";
-import { getListCities } from "../../../sevices/city.sevices";
+import { getListCities } from "../../../sevices/candidate/city.sevices";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function FormSearch({ defaultKeyword, defaultCity }) {

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { NavLink, useLocation, useSearchParams } from "react-router-dom";
 import { BuildOutlined, SearchOutlined, MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
-import DropDown from "../../components/Dropdown";
 import FormSearch from "../../components/Candidate/FormSearch";
 import logo from "../../asset/image/logo.png";
+import DropDown from "../../components/Candidate/Dropdown";
 
 function Header() {
   const location = useLocation();
@@ -36,19 +36,19 @@ function Header() {
               </Col>
             </Row>
           ) : (
-            <ul>
+            <ul className="list">
               <li>
-                <NavLink to="/search">
+                <NavLink to="/search" className="hd-link">
                   <SearchOutlined /> Ngành nghề/ Địa điểm
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/nha-tuyen-dung-hang-dau" className="hd-link">
                   <BuildOutlined /> Công ty
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">Cẩm nang việc làm</NavLink>
+                <NavLink to="#" className="hd-link">Cẩm nang việc làm</NavLink>
               </li>
             </ul>
           )}
@@ -64,7 +64,7 @@ function Header() {
           </div>
           <span>|</span>
           <div className="inner-link">
-            <NavLink to="#">
+            <NavLink to="/nha-tuyen-dung/login">
               <p>Nhà tuyển dụng</p>
             </NavLink>
           </div>

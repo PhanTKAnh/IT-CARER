@@ -6,10 +6,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { loginSchema } from "../../../untils/validate";
 import { message } from "antd";
 import { setCookie } from "../../../helpers/cookie";
-import { postLoginCandidate } from "../../../sevices/candidate.sevices";
+import { postLoginCandidate } from "../../../sevices/candidate/candidate.sevices";
 
 function Login() {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -20,22 +20,19 @@ function Login() {
     } = useForm({ resolver: yupResolver(loginSchema) });
     const onSubmit = async (data) => {
         setErrorMessage("");
-    
+
         const option = {
             Email: data.Email,
             Password: data.Password
         };
-    
+
         try {
             const response = await postLoginCandidate(option);
             if (response.code === 200) {
-                setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 giờ (60 phút)
-                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 ngày
-                
-                
-                
+                setCookie("tokenCandidate", response.tokenCandidate, 60); 
+                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); 
                 message.success("Đăng nhập thành công!");
-                navigate("/");
+                navigate("nha-tuyen-dung/dashbroad");
             } else if (response.code === 401) {
                 setErrorMessage("Sai email hoặc mật khẩu!");
             }
@@ -44,54 +41,55 @@ function Login() {
             message.error("Có lỗi xảy ra, vui lòng thử lại sau!");
         }
     };
-    
+
     const handlePassword = () => {
         setShowPassword(!showPassword);
     };
 
     return (
-        <div className="container-login">
-            <div className="inner-left">
-                <h1> Xây dựng sự nghiệp Thành công cùng It Career</h1>
+        <div className="login-container">
+            <div className="login__left">
+                <h1 className="login__title">Xây dựng sự nghiệp Thành công cùng It Career</h1>
             </div>
 
-            <div className="inner-right">
-                <form className="login" onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="login-title">Người tìm việc đăng nhập</h1>
+            <div className="login__right">
+                <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+                    <h1 className="login__form-title">Người tìm việc đăng nhập</h1>
 
-                    {errors.FullName && <p className="error">{errors.FullName.message}</p>}
-
-                    <section className="input-box">
+                    <div className="login__input-box">
                         <input type="text" placeholder="Email" {...register("Email")} />
-                        <i> <UserOutlined /></i>
-                    </section>
-                    {errors.Email && <span className="error">{errors.Email.message}</span>}
+                        <i><UserOutlined /></i>
+                        {errors.Email && <p className="login__error">{errors.Email.message}</p>}
 
-                    <section className="input-box">
+                    </div>
+
+                    <div className="login__input-box">
                         <input type={showPassword ? "text" : "password"} placeholder="Mật khẩu" {...register("Password")} />
-                        <i onClick={handlePassword}> {showPassword ? (<EyeOutlined />) : (<EyeInvisibleOutlined />)}</i>
-                    </section>
-                    {errors.Password && <span className="error">{errors.Password.message}</span>}
-                    
-                    <section className="remember-forgot-box">
-                        <NavLink className="forgot-password" to={"/nguoi-tim-viec/reset/forgotPassword"}>
-                            <h5>Quên mật khẩu?</h5>
+                        <i onClick={handlePassword} style={{ cursor: "pointer" }}>
+                            {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                        </i>
+                        {errors.Password && <p className="login__error">{errors.Password.message}</p>}
+
+                    </div>
+
+                    <div className="login__options">
+                        <NavLink className="login__forgot-password" to="/nguoi-tim-viec/reset/forgotPassword">
+                            Quên mật khẩu?
                         </NavLink>
-                    </section>
+                    </div>
 
+                    {errorMessage && <p className="login__error">{errorMessage}</p>}
 
-                    {errorMessage && <p className="error">{errorMessage}</p>}
+                    <button className="login__button" type="submit">Login</button>
 
-
-                    <button className="login-button">Login</button>
-
-                    <h5 className="dont-have-an-account">
-                        Don't have an account?
-                        <NavLink to={"/nguoi-tim-viec/register"} ><b> Register</b></NavLink>
-                    </h5>
+                    <p className="login__register">
+                        Don't have an account? <NavLink to="/nguoi-tim-viec/register"><b>Register</b></NavLink>
+                    </p>
                 </form>
+
             </div>
         </div>
+
     );
 }
 

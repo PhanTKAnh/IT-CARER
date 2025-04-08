@@ -12,7 +12,7 @@ function JobSeekerLayout() {
                   className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
                   to="/nguoi-tim-viec/cong-viec-luu"
                 >
-                  <span className="icon">❤️</span> Việc đã lưu (<span className="saved_jobs-count">2</span>)
+                  <span className="icon">❤️</span> Việc đã lưu
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -20,13 +20,13 @@ function JobSeekerLayout() {
                   className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
                   to="/nguoi-tim-viec/viec-da-ung-tuyen"
                 >
-                  <span className="icon">✈️</span> Việc đã ứng tuyển (<span className="applied_jobs-count">0</span>)
+                  <span className="icon">✈️</span> Việc đã ứng tuyển 
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink
                   className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
-                  to="/nguoi-tim-viec/ho-so-ca-nhan"
+                  to="/nguoi-tim-viec/ho-so-ca-nhan/xem"
                 >
                   <span className="icon">👤</span> Tài khoản
                 </NavLink>

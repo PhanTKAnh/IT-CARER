@@ -1,4 +1,4 @@
-import { get } from "../untils/request";
+import { get } from "../../untils/request";
 
 // [GET]/favorite
 export const getFavoriteJobs = async (token) =>{

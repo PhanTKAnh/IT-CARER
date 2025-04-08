@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { getCookie } from "../../helpers/cookie";
-import { getProfieCandidate } from "../../sevices/candidate.sevices";
-import { getRefreshToken } from "../../helpers/getToken";
+
 import { HeartOutlined, HeartFilled, SendOutlined, ReconciliationOutlined, LogoutOutlined } from "@ant-design/icons";
-import logo from "../../asset/image/logo.png";
-import LogOut from "../../pages/Candidate/LogOut";
+import logo from "../../../asset/image/logo.png";
+import { getCookie } from "../../../helpers/cookie";
+import { getRefreshToken } from "../../../helpers/getToken";
+import { getProfieCandidate } from "../../../sevices/candidate/candidate.sevices";
 
 function DropDown() {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ function DropDown() {
 
         const interval = setInterval(checkTokenChange, 500);
 
-        return () => clearInterval(interval); 
+        return () => clearInterval(interval);
     }, [tokenCandidate]);
 
     const fetchApi = async () => {
@@ -59,7 +59,7 @@ function DropDown() {
 
     useEffect(() => {
         fetchApi();
-    }, [tokenCandidate]); 
+    }, [tokenCandidate]);
 
     const handleOnclick = useCallback(() => {
         setIsOpen((prev) => !prev);
@@ -108,7 +108,7 @@ function DropDown() {
                         <div className="inner-right">
                             <p> <ReconciliationOutlined /> Hồ sơ xin việc </p>
                             <Link to={"/nguoi-tim-viec/cong-viec-luu"}> <p> <HeartOutlined /> Việc đã lưu</p></Link>
-                           <Link to={"/nguoi-tim-viec/viec-da-ung-tuyen"}> <p> <SendOutlined /> Việc đã ứng tuyển</p></Link>
+                            <Link to={"/nguoi-tim-viec/viec-da-ung-tuyen"}> <p> <SendOutlined /> Việc đã ứng tuyển</p></Link>
                         </div>
                     </div>
 
@@ -116,23 +116,24 @@ function DropDown() {
                         <div className="inner-footer">
                             <hr className="divider" />
                             <NavLink to={"nguoi-tim-viec/ho-so-ca-nhan/xem"}>
-                            <div className="inner-infoUser">
+                                <div className="inner-infoUser">
 
-<div className="inner-image">
-    <img
-        alt="avatar"
-        height="28"
-        width="28"
-        src="https://static.careerlink.vn/web/images/common/avatar_placeholder.png"
-    />
-</div>
-<div className="inner-text">
-    <p>{dataCandidate.FullName}</p>
-    <p>Tài khoản</p>
-</div>
-</div>
+                                    <div className="inner-image">
+                                        <img
+                                            alt="avatar"
+                                            height="28"
+                                            width="28"
+                                            src={dataCandidate.
+                                                Avatar}
+                                        />
+                                    </div>
+                                    <div className="inner-text">
+                                        <p>{dataCandidate.FullName}</p>
+                                        <p>Tài khoản</p>
+                                    </div>
+                                </div>
                             </NavLink>
-                           
+
                             <div className="inner-logout">
                                 <NavLink to={"/nguoi-tim-viec/logout"}><LogoutOutlined /> Đăng xuất</NavLink>
                             </div>

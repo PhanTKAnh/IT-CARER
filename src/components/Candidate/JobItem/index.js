@@ -22,10 +22,14 @@ function JobItem({ dataJob = [] }) {
 
 
     const handleToggleFavorite = (jobId) => {
-
-        toggleFavoriteJobId(jobId,favoriteJobs, setFavoriteJobs, tokenCandidate, navigate);
+        if (!tokenCandidate) {
+            navigate("/nguoi-tim-viec/login");
+            return;
+        }
+    
+        toggleFavoriteJobId(jobId, favoriteJobs, setFavoriteJobs, tokenCandidate, navigate);
     };
-
+    
     return (
         <>
             {dataJob.length === 0 ? (

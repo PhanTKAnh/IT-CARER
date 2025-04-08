@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPasswordSchema } from "../../../untils/validate"; 
 import { getCookie } from "../../../helpers/cookie";
 import { message } from "antd";
-import { postResetPassword } from "../../../sevices/candidate.sevices";
+import { postResetPassword } from "../../../sevices/candidate/candidate.sevices";
 
 function ResetPassword() {
     const navigate = useNavigate();

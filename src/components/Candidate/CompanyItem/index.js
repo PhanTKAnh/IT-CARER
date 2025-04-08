@@ -12,7 +12,7 @@ function CompanyItem(props) {
                                 <img src={item.avatar} />
                             </div>
                             <div className="inner-logo">
-                                <img src="https://static.careerlink.vn/image/cd95139a4118d9309ef97fbe8f98b823" />
+                                <img src={item.logo} />
                             </div>
                         </NavLink>
                         <div className="inner-content">

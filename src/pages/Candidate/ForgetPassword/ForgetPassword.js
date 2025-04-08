@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { postForgotPassword } from "../../../sevices/candidate.sevices";
+import { postForgotPassword } from "../../../sevices/candidate/candidate.sevices";
 
 // Schema validate chỉ kiểm tra email
 const forgotPasswordSchema = yup.object().shape({

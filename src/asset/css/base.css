@@ -13,12 +13,17 @@
 
 body{
     font-family: var(--font);
-    color:var(--color-text)
+    color:var(--color-text);
+    text-decoration: none;
+
 }
 
 a{
-    text-decoration: none;
+    color:var(--color-text);
+    text-decoration: none !important;
+    list-style: none !important;
 }
+
 ul{
     list-style: none;
 }

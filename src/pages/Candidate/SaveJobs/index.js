@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { HeartOutlined, HeartFilled, SendOutlined } from "@ant-design/icons";
-import { getFavoriteJobs } from "../../../sevices/favorrite-jobs.sevice";
+import { HeartFilled, SendOutlined } from "@ant-design/icons";
+import { getFavoriteJobs } from "../../../sevices/candidate/favorrite-jobs.sevice";
 import { getCookie } from "../../../helpers/cookie";
 import { deletedFavoriteId } from "../../../helpers/favoriteHelper";
 import { useNavigate } from "react-router-dom";
-import { getProfieCandidate } from "../../../sevices/candidate.sevices";
-import { getDetailJob } from "../../../sevices/job.sevices";
+import { getProfieCandidate } from "../../../sevices/candidate/candidate.sevices";
 import ApplyModal from "../../../components/Candidate/ApplyModal";
 
 function SaveJobs() {

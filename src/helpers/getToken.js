@@ -1,5 +1,5 @@
 import { getCookie, setCookie } from "../helpers/cookie";
-import { postRefreshToken } from "../sevices/candidate.sevices"; 
+import { postRefreshToken } from "../sevices/candidate/candidate.sevices"; 
 
 export const getRefreshToken = async () => {
     let token = getCookie("tokenCandidate");

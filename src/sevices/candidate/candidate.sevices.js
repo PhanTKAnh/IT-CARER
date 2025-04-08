@@ -1,4 +1,4 @@
-import { get, post } from "../untils/request"
+import { get, post,patch } from "../../untils/request"
 
 // [POST] /candidate/register
 export const postRegisterCandidate = async(option) =>{
@@ -14,7 +14,7 @@ export const postLoginCandidate = async(option) =>{
 
 // [GET] / candidate/profie
 export const getProfieCandidate = async(token) =>{
-    const result = await get("candidate/profie", token);
+    const result = await get("candidate/profile", token);
     return result;
 }
 // [POST] /candidate/reset/forgotPassword
@@ -37,3 +37,15 @@ export const postRefreshToken = async( refreshToken) =>{
     const result = await post("candidate/refresh-token", refreshToken, null);
     return result;
 }
+// [POST] /candidate/change-password 
+export const patchChangePassword = async( option,token) =>{
+    const result = await patch("candidate/change-password", option,token );
+    return result;
+}
+// [PATCH] /candidate/change-password 
+export const updateCandidateProfile = async( option,token) =>{
+    const result = await patch("candidate/profile", option,token );
+    return result;
+}
+
+

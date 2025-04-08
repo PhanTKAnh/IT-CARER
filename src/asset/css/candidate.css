@@ -1,13 +1,11 @@
 /* Header */
 .header {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    /* background: var(--bg-1); */
-    background: #ffffff33;
+    background: #ffffff;
     padding: 0 40px;
-    position: sticky;
+    /* position: fixed;
     z-index: 9999;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 100%;
 
 }
@@ -24,7 +22,7 @@
 }
 
 .header .inner-logo img {
-    height: 90px;
+    height: 60px;
     width: auto;
 }
 
@@ -42,24 +40,40 @@
     border-radius: 8px;
 }
 
-.header .inner-menu ul {
+.header .inner-menu .list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
 
-.header .inner-menu ul li a {
+.header .inner-menu .list li a.hd-link {
     display: inline-block;
-    padding: 35px 20px;
+    padding: 13px 20px;
     color: var(--color-text);
-    font-size: 18px;
-}
+    font-size: 16px;
+    position: relative;
+    text-decoration: none; 
+  }
+  
 
-.header .inner-menu ul li a:hover {
-    background: #fff;
-}
-/* Nút menu trên mobile */
+  .header .inner-menu .list li a.hd-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 8px; 
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary, #005EF0); 
+    transition: width 0.3s ease;
+  }
+  
+ 
+  .header .inner-menu .list li a.hd-link:hover::after {
+    width: 100%;
+  }
+  
+
 .header .inner-icon-mobi {
     display: none;
     font-size: 24px;
@@ -71,7 +85,7 @@
     position: relative;
 }
 
-.header .inner-button .inner-dropdown .dropbtn {
+ .inner-dropdown .dropbtn {
     display: flex;
     align-items: center;
     background-color: #ffffff;
@@ -88,12 +102,12 @@
     background-color: #f0f0f0;
 }
 
-.header .inner-button .inner-dropdown .dropbtn img {
+ .inner-dropdown .dropbtn img {
     border-radius: 50%;
     margin-right: 5px;
 }
 
-.header .inner-button .inner-dropdown .dropbtn p {
+.inner-dropdown .dropbtn p {
     margin: 0;
     padding: 5px;
 }
@@ -105,19 +119,19 @@
 
 
 /* Nội dung dropdown */
-.header .inner-button .inner-dropdown  .dropdown-content {
+ .inner-dropdown  .dropdown-content {
     position: absolute;
     top: 60px;
     left: -100px;
     background-color: #fff;
     width: 400px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 3;
     border-radius: 8px;
     padding: 15px;
 }
 
-.header .inner-button .inner-dropdown .inner-head {
+ .inner-dropdown .inner-head {
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -125,11 +139,11 @@
     border-bottom: 1px solid #ddd;
 }
 
-.header .inner-button .inner-dropdown   .inner-head a {
+ .inner-dropdown   .inner-head a {
     width: 50%;
 }
 
-.header .inner-button .inner-dropdown .inner-head a button {
+ .inner-dropdown .inner-head a button {
     width: 100%;
     padding: 12px;
     border: none;
@@ -140,12 +154,12 @@
     transition: background-color 0.2s ease;
 }
 
-.header .inner-button .inner-dropdown .inner-head a .btn-1 {
+ .inner-dropdown .inner-head a .btn-1 {
     background-color: #005EF0;
     color: white;
 }
 
-.header .inner-button .inner-dropdown .inner-head a .btn-2 {
+ .inner-dropdown .inner-head a .btn-2 {
     background-color: #e0e0e0;
     color: #005EF0;
 }
@@ -154,29 +168,29 @@
     background-color: #0455d8;
 }
 
-.header .inner-button .inner-dropdown .inner-head a .btn-2:hover {
+ .inner-dropdown .inner-head a .btn-2:hover {
     background-color: #005EF0;
     color: white;
 }
 
 /* Nội dung chính */
-.header .inner-button .inner-dropdown .inner-content {
+ .inner-dropdown .inner-content {
     display: flex;
     padding: 10px 0;
     gap: 10px;
 }
 
-.header .inner-button .inner-dropdown .inner-left {
+.inner-dropdown .inner-left {
     flex: 1;
 }
 
-.header .inner-button .inner-dropdown .inner-right {
+ .inner-dropdown .inner-right {
     flex: 2;
     display: flex;
     flex-direction: column;
 }
 
-.header .inner-button .inner-dropdown .inner-right p {
+.inner-dropdown .inner-right p {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -187,13 +201,13 @@
     padding: 10px;
 }
 
-.header .inner-button .inner-dropdown .inner-right p:hover {
+.inner-dropdown .inner-right p:hover {
     background-color: #f8f8f8;
 
 }
 
 /* Footer */
-.header .inner-button .inner-dropdown .inner-footer {
+ .inner-dropdown .inner-footer {
     padding-top: 5px;
 }
 
@@ -204,20 +218,21 @@
     margin: 5px 0;
 }
 
-.header .inner-button .inner-dropdown .inner-infoUser {
+ .inner-infoUser {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px;
 }
 
-.header .inner-button .inner-dropdown .inner-infoUser .inner-image img{
+.inner-infoUser .inner-image img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.header .inner-button .inner-dropdown .inner-logout {
+ .inner-dropdown .inner-logout {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -227,12 +242,12 @@
     transition: background-color 0.2s ease;
 }
 
-.header .inner-button .inner-dropdown .inner-logout:hover {
+ .inner-dropdown .inner-logout:hover {
     background-color: #f8f8f8;
 }
 
 
-.header .inner-button .inner-link p {
+.inner-link p {
     list-style: none;
     margin: 20px;
     font-size: 16px;
@@ -288,7 +303,7 @@
     }
 
     /* Giảm kích thước dropdown */
-    .header .inner-button .inner-dropdown .dropdown-content {
+ .inner-dropdown .dropdown-content {
         width: 100%;
         left: 0;
         top: 45px;
@@ -296,18 +311,18 @@
     }
 
     /* Căn giữa nội dung */
-    .header .inner-button .inner-dropdown .inner-infoUser {
+.inner-dropdown .inner-infoUser {
         flex-direction: column;
         text-align: center;
     }
 
     /* Điều chỉnh nút đăng nhập/đăng ký */
-    .header .inner-button .inner-dropdown .inner-head a {
+.inner-dropdown .inner-head a {
         width: 100%;
     }
 
     /* Giảm padding các phần tử */
-    .header .inner-button .inner-dropdown .inner-right p {
+ .inner-dropdown .inner-right p {
         padding: 6px;
     }
 }
@@ -367,6 +382,7 @@ footer {
 }
 
 .footer-top li:last-child a {
+    
     margin: 0 8px;
     color: rgb(160, 215, 239);
     font-size: 20px;
@@ -425,7 +441,7 @@ footer {
     max-width: 1400px; 
     height: auto;
     border-radius: 12px;
-    z-index: 999;
+    z-index: 1;
     padding: 12px 20px;
     top: 25%;
     left: 50%;
@@ -542,7 +558,7 @@ footer {
 .inner-job .job-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 15px;
+    gap: 8px;
     width: 80%;
 }
 
@@ -551,11 +567,10 @@ footer {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 16px 0;
+    padding: 16px 5px;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     justify-content: space-evenly;
     position: relative;
@@ -563,7 +578,8 @@ footer {
 .job-list .inner-card button{
     font-size: 30px;
     background: #ffffff;
-    border: none;
+    color: #0056b3;
+    border: 1px;
 }
 
 .job-list .inner-card:hover {
@@ -654,7 +670,7 @@ footer {
     padding: 10px;
     position: relative;
 }
-.inner-tag .tag-list {
+ .tag-list {
     display: grid;
     grid-template-columns: repeat(6, minmax(180px, 1fr)); 
     gap: 20px;
@@ -663,23 +679,22 @@ footer {
     width: 100%;
 }
 
-.inner-tag .tag-list .inner-card {
+ .tag-list .inner-card {
     background-color: #EDF2FC;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
     width: 100%;
     text-align: center;
 }
 
-.inner-tag .tag-list .inner-card:hover {
+ .tag-list .inner-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.inner-tag .tag-list .inner-card .inner-image {
+ .tag-list .inner-card .inner-image {
     width: 100px;
     height: 100px;
     display: flex;
@@ -692,27 +707,27 @@ footer {
     padding: 10px;
 }
 
-.inner-tag .tag-list .inner-card .inner-image img {
+ .tag-list .inner-card .inner-image img {
     width: 80%;
     height: 80%;
     object-fit: contain;
 }
 
 
-.inner-tag .tag-list .inner-card .inner-content {
+ .tag-list  .inner-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.inner-tag .tag-list .inner-card .inner-content .inner-text {
+ .tag-list .inner-text {
     font-size: 18px;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
 }
 
-.inner-tag .tag-list .inner-card .inner-content .inner-count {
+.inner-tag  .inner-count {
     font-size: 15px;
     color: #666;
 }
@@ -843,46 +858,45 @@ footer {
     position: relative;
 }
 
-.inner-company .list-company {
+.list-company {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Mặc định 3 cột */
     gap: 15px;
     width: 80%;
 }
 
-.inner-company .list-company .inner-card {
+.list-company .inner-card {
     position: relative; /* Đảm bảo logo nằm trong card */
     background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #EDF2FC;
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
     width: 100%;
     text-align: center;
 }
 
-.inner-company .list-company .inner-card:hover {
+ .list-company .inner-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 
-
-.inner-company .list-company .inner-image {
+.list-company .inner-image {
     width: 100%;
     height: 180px;
     overflow: hidden;
     border-radius: 8px;
 }
 
-.inner-company .list-company .inner-image img {
+ .list-company .inner-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.inner-company .list-company .inner-logo {
+ .list-company .inner-logo {
     position: relative; /* Thay vì absolute */
     width: 80px;
     height: 80px;
@@ -896,30 +910,29 @@ footer {
     margin: -40px auto 10px; /* Đẩy logo lên */
 }
 
-.inner-company .list-company .inner-logo img {
+.list-company .inner-logo img {
     width: 70px;
     height: 70px;
     object-fit: contain;
     border-radius: 50%;
 }
 
-.inner-company .list-company .inner-content {
+.list-company .inner-content {
     margin-top: 50px;
 }
 
-.inner-company .list-company .inner-title {
+.list-company .inner-title {
     font-size: 18px;
     font-weight: bold;
     color: #333;
     margin-bottom: 8px;
 }
 
-.inner-company .list-company .inner-content .inner-text {
+ .list-company .inner-content .inner-text {
     font-size: 16px;
     color: #666;
 }
-
-.inner-company .list-company .footer-cart {
+.list-company .footer-cart {
     display: block;
     width: 100%;
     margin-top: 15px;
@@ -927,9 +940,10 @@ footer {
     border-top: 1px solid #ddd;
 }
 
-.inner-company .list-company .footer-cart .inner-text,
-.inner-company .list-company .footer-cart .inner-position {
+.list-company .inner-text,
+ .list-company  .inner-position {
     font-size: 14px;
+    margin-bottom: 10px;
     color: #555;
 }
 
@@ -1089,6 +1103,13 @@ footer {
 .search-card .inner-right .inner-info span svg {
     margin-right: 4px;
 }
+.job-card__favorite-btn {
+background:#EDF2FC;
+border: none;
+font-size: 30px;
+color: #0073e6;
+}
+
 
 /* 📌 Responsive cho Tablet */
 @media (max-width: 991.98px) {
@@ -1173,262 +1194,207 @@ footer {
 
 /* end list tag */
 
-/* detail company */
-.detail-company .inner-head {
-    padding: 0 50px;
-    position: relative;
-    background-color: #F1F5F9;
+
+/* CSS chuẩn BEM */
+
+.detail-company__header {
     padding: 30px;
-
+    background-color: #F1F5F9;
+    text-align: center;
 }
-
-.detail-company .inner-head .inner-image {
+.detail-company__cover img {
     width: 100%;
-    max-height: 400px;
     height: 50vh;
-    overflow: hidden;
-}
-
-.detail-company .inner-head .inner-image img {
-    width: 100%;
-    height: 400px;
     object-fit: cover;
 }
-
-.detail-company .inner-head .inner-logo {
+.detail-company__logo {
     position: absolute;
     top: 70%;
-    left: 55px;
+    left: 197px;
     transform: translateY(-50%);
     background: #fff;
-    border: 1px solid #ddd;
     width: 140px;
     height: 140px;
     border-radius: 10px;
-    display: flex;
+    display: flex
+;
     align-items: center;
     justify-content: center;
     padding: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.detail-company .inner-head .inner-logo img {
+.detail-company__logo img {
     width: 100%;
     object-fit: contain;
 }
-
-.detail-company .inner-head .inner-text {
-    flex: 1;
-    margin-left: 180px;
-    padding: 10px;
+.detail-company__info {
+    margin-top: 80px;
+    text-align: center;
 }
-
-.detail-company .inner-head .inner-text .inner-title {
+.detail-company__name {
     font-size: 24px;
     font-weight: bold;
     color: #333;
 }
-
-.detail-company .inner-head .inner-text .inner-info {
+.detail-company__meta {
     display: flex;
     flex-direction: column;
     gap: 5px;
     font-size: 14px;
     color: #666;
-}
-
-.detail-company .inner-head .inner-text .inner-info span {
-    display: flex;
     align-items: center;
-    gap: 5px;
 }
-
-.detail-company .inner-content {
+.detail-company__content {
     display: flex;
+    flex-direction: column;
     margin-top: 20px;
     gap: 20px;
 }
-
-.detail-company .inner-content .inner-left {
-    flex: 2;
+.detail-company__left, .detail-company__right {
     background-color: #F1F5F9;
     padding: 30px;
+    border-radius: 10px;
 }
-
-.detail-company .inner-content .inner-right {
-    flex: 1;
-    background-color: #F1F5F9;
-    padding: 30px;
-}
-
-.detail-company .inner-content .inner-left h5 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.detail-company .inner-content .inner-left .inner-desc {
+.detail-company__description {
     font-size: 14px;
     line-height: 1.6;
     color: #444;
 }
-
-.detail-company .inner-content .inner-right p {
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.detail-company .inner-content .inner-right a {
-    color: #0073e6;
-    text-decoration: none;
-}
-
-.detail-company .inner-right a:hover {
-    text-decoration: underline;
-}
-
-/* end detail company */
-
-/* Login */
-.container-login {
+.job-card {
     display: flex;
-    height: 80vh;
-    margin: 0;
-    padding: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
 }
-
-.container-login .inner-left {
-    position: relative;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px 20px;
-    /* Thêm padding để không bị sát viền */
+.job-card__logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
+.job-card__details {}
 
-.container-login .inner-left h1 {
-    margin-top: 120px;
-    font-size: 42px;
-    font-weight: 900;
-    color: #005EF0;
-    text-shadow: 3px 3px 10px rgba(0, 94, 240, 0.3);
-    line-height: 1.3;
-    letter-spacing: 1px;
-    word-wrap: break-word;
-    white-space: normal;
-    overflow-wrap: break-word;
-    text-align: center;
-    max-width: 90%;
-}
-
-@media (max-width: 768px) {
-    .container-login .inner-left h1 {
-        font-size: 32px;
-        margin-top: 80px;
+@media (min-width: 768px) {
+    .detail-company__content {
+        flex-direction: row;
+    }
+    .detail-company__left {
+        flex: 2;
+    }
+    .detail-company__right {
+        flex: 1;
     }
 }
 
 
-.container-login .inner-right {
-    background: #0F75BC;
-    ;
+.login-container {
+    display: flex;
+    height: 80vh;
+}
+
+.login__left, .login__right {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login__left {
+    text-align: center;
+}
+
+.login__title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #005EF0;
+    text-shadow: 3px 3px 10px rgba(0, 94, 240, 0.3);
+}
+
+@media (max-width: 768px) {
+    .login__title {
+        font-size: 32px;
+    }
+}
+
+.login__right {
+    background: #0F75BC;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container-login .inner-right .login {
-    background: #ffffff;
-    width: 500px;
+.login__form {
+    background: #fff;
+    width: 400px;
     padding: 30px;
     border-radius: 20px;
-    border: solid 5px rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(25px);
-    box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.1);
-    color: #007bff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.container-login .inner-right .login .login-title {
+.login__form-title {
     margin-bottom: 16px;
 }
 
-.container-login .inner-right .login .input-box {
-    display: flex;
-    width: 100%;
+.login__input-box {
     position: relative;
+    width: 100%;
     margin-top: 20px;
 }
 
-.container-login .inner-right .login .input-box input {
+.login__input-box input {
     width: 100%;
     padding: 10px 16px 10px 38px;
     border-radius: 9px;
-    border: solid 3px transparent;
-    background: rgb rgba(255, 255, 255, 0.1);
+    border: solid 2px #ddd;
     outline: none;
-    caret-color: #005EF0;
     color: #005EF0;
     font-weight: 500;
-    transition: 0.25s;
 }
 
-.container-login .inner-right .login .input-box input:focus {
-    border: solid 3px rgba(255, 255, 255, 0.25);
-}
-
-.container-login .inner-right .login .input-box input::placeholder {
-    border: solid 3px rgba(255, 255, 255, 0.75);
-}
-
-.container-login .inner-right .login .input-box input::-ms-reveal {
-    filter: invert(100%)
-}
-
-.container-login .inner-right .login .input-box i {
+.login__input-box i {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     left: 14px;
+    transform: translateY(-50%);
     color: #0F75BC;
-    ;
-    font-size: 18px;
-    transition: 0.25s;
+    cursor: pointer;
 }
 
-.container-login .inner-right .login .input-box input:focus+i {
-    color: #0F75BC;
-    ;
-}
-
-.container-login .inner-right .login .remember-forgot-box {
+.login__options {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     margin-top: 16px;
-    justify-content: space-between;
 }
 
-.container-login .inner-right .login .remember-forgot-box h5 {
-    font-weight: normal;
+.login__forgot-password {
+    color: #3c4043;
+    text-decoration: none;
 }
 
-.container-login .inner-right .login .login-button {
+.login__error {
+    color: red;
+    font-size: 14px;
+}
+
+.login__button {
     width: 100%;
-    border: 1px solid #0F75BC;
-    ;
     background: #0F75BC;
-    ;
-    border-radius: 20px;
+    color: #fff;
     padding: 10px;
-    color: #ffffff;
+    border: none;
+    border-radius: 20px;
     font-weight: 600;
-
+    cursor: pointer;
+    margin-top: 16px;
 }
 
+.login__register {
+    margin-top: 10px;
+}
 /* register */
 .container-register {
     display: flex;
@@ -1598,25 +1564,27 @@ footer {
 }
 /* Hình ảnh chính */
 .detail-job .job-left .job-image {
-    
+    position: relative;
     width: 100%;
-    max-height: 450px;
+    height: 350px;
     overflow: hidden;
 }
 .detail-job .job-left .job-image img {
     width: 100%;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
 }
 .detail-job .job-left .job-logo{
     background: #ffff;
     position: absolute;
-    top: 262px;
-    left: 150px;
+    bottom: 400px;
+    left: 279px;
     width: 100px;
     height: 100px;
     border-radius: 8px;
     display: block;
     margin: 10px auto;
+
 }
 .detail-job .job-left .job-logo img {
    width: 100%;
@@ -1815,7 +1783,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 600px;
+    margin: 50px 0;
+  
 }
 .reset-password {
     background: white;
@@ -1881,11 +1850,12 @@ footer {
 }
 
 h2 {
-    font-size: 22px;
+    font-size: 30px;
+    font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
+    text-align: start;
+    margin-bottom: 15px;
 }
-
 /* Card công việc */
 .job-card {
     display: flex;
@@ -2429,12 +2399,30 @@ input[type="file"] {
     margin-bottom: 10px;
     transition: transform 0.2s;
   }
+  .info-list li strong {
+    color: #333;
+  }
+/* Input chỉnh sửa */
+.info-input input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #0056b3;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+.info-input select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
   
   .info-list li:hover {
     transform: scale(1.02);
   }
   
-  button {
+  .info-list  button {
     background: #007bff;
     color: white;
     border: none;
@@ -2445,10 +2433,15 @@ input[type="file"] {
     transition: background 0.3s ease-in-out;
   }
   
-  button:hover {
+  .info-list button:hover {
     background: #0056b3;
   }
   
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
   /* ❌ Xóa tài khoản */
   .delete-account {
     background: red;
@@ -2482,79 +2475,97 @@ input[type="file"] {
     }
   }
   /*  */
-.container-pass {
+  .container-pass {
     flex: 1;
     padding: 20px;
     border-radius: 8px;
 }
-  
-  .title {
+
+.title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
+    font-weight: bold;
     color: #333;
-  }
-  
-  .form-container {
+}
+
+.form-container {
     width: 100%;
-  }
-  
-  .form-group {
-    margin-bottom: 39px  }
-  
-  .form-group label {
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.form-group label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .required {
+    color: #555;
+}
+
+.required {
     color: red;
-  }
-  
-  input[type="password"],
-  input[type="text"] {
+}
+
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-box input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    padding-right: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s;
-  }
-  
-  input:focus {
+    font-size: 16px;
+    background: #f8f8f8;
+}
+
+.input-box input:focus {
     border-color: #007bff;
     outline: none;
-  }
-  
-  .invalid-feedback {
-    display: block;
+    background: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.input-box i:hover {
+    color: #007bff;
+}
+
+.error {
     color: red;
     font-size: 14px;
     margin-top: 5px;
-  }
-  
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox-group label {
-    margin-left: 8px;
-    cursor: pointer;
-  }
-  
-  .btn-submit {
+}
+
+.btn-submit {
     width: 100%;
     background-color: #007bff;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
-  }
-  
-  .btn-submit:hover {
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
     background-color: #0056b3;
-  }
+}
+
+/*  */

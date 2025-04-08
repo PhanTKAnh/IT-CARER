@@ -1,4 +1,4 @@
-import { get, post } from "../untils/request";
+import { get, post }  from "../../untils/request";
 
 // [POST] /application
 export const postApplication = async(option,token) =>{

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getSearch } from "../../../sevices/search.sevices";
+import { getSearch } from "../../../sevices/candidate/search.sevices";
 import FilterSearch from "./filterSearch";
 import SearchList from "../../../components/Candidate/JobsList";
 import internet from "../../../asset/image/Internet(1).jpg";
-import { getTagList } from "../../../sevices/tag.sevices";
+import { getTagList } from "../../../sevices/candidate/tag.sevices";
+import { getCookie } from "../../../helpers/cookie";
 
 function Search() {
   const [searchParams] = useSearchParams();
   const [jobsSearch, setJobsSearch] = useState([]);
   const [dataTag, setDataTag] = useState([]);
+  const tokenCandidate = getCookie("tokenCandidate");
+
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -17,7 +20,7 @@ function Search() {
       setDataTag(tags);
 
       const searchParamsObject = Object.fromEntries([...searchParams]);
-      const jobs = await getSearch(searchParamsObject);
+      const jobs = await getSearch(searchParamsObject,tokenCandidate);
       setJobsSearch(jobs);
     };
 
@@ -34,7 +37,7 @@ function Search() {
         </div>
         <div className="search-list">
           <div className="search-left">
-            <SearchList jobsList={jobsSearch} />
+            <SearchList jobsList={jobsSearch} tokenCandidate={tokenCandidate}/>
           </div>
           <div className="search-right">
             <div className="search-image">

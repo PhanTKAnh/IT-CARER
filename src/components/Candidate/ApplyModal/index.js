@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { notification } from "antd";
 import { applyModalSchema } from "../../../untils/validate";
-import { postApplication } from "../../../sevices/application.sevies";
-import { uploadFile } from "../../../sevices/uploadFile";
+import { postApplication } from "../../../sevices/candidate/application.sevies";
+import { uploadFile } from "../../../sevices/candidate/uploadFile";
 
 const ApplyModal = ({ show, handleClose, jobDetail, candidateInfo, tokenCandidate }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -38,13 +38,13 @@ const ApplyModal = ({ show, handleClose, jobDetail, candidateInfo, tokenCandidat
   const handleUploadImage = async (cv) => {
     setIsLoading(true); 
     const formData = new FormData();
-    formData.append("cv", cv);
+    formData.append("file", cv);
     try {
       const uploadResponse = await uploadFile(formData);
-      if (!uploadResponse.cvUrl) {
+      if (!uploadResponse. linkUrl) {
         throw new Error("Lỗi: Không nhận được URL file từ server");
       }
-      return uploadResponse.cvUrl;
+      return uploadResponse. linkUrl;
     } catch (error) {
       console.error("Upload error:", error);
       notification.error({ message: "Không thể upload CV" });
@@ -54,7 +54,7 @@ const ApplyModal = ({ show, handleClose, jobDetail, candidateInfo, tokenCandidat
   };
 
   const onSubmit = async (data) => {
-    setIsLoading(true); // Bắt đầu loading khi nộp đơn
+    setIsLoading(true); 
     const LinkCV = await handleUploadImage(data.cv);
     if (!LinkCV) {
       setIsLoading(false);
@@ -72,7 +72,13 @@ const ApplyModal = ({ show, handleClose, jobDetail, candidateInfo, tokenCandidat
       notification.success({ message: "Nộp đơn thành công!" });
       reset();
       handleClose();
-    } else {
+    }else if(response.code === 400){
+      notification.warning({
+        message: "Bạn đã ứng tuyển công việc này rồi!",
+        description: "Vui lòng kiểm tra lại lịch sử ứng tuyển của bạn.",  
+      });
+    }
+    else {
       notification.error({ message: "Nộp đơn thất bại!" });
     }
     setIsLoading(false);

@@ -1,4 +1,4 @@
-import { patchfavoriteJobs } from "../sevices/job.sevices";
+import { patchfavoriteJobs } from "../sevices/candidate/job.sevices";
 
 export const toggleFavoriteJob = async (jobId, favoriteJobs, setFavoriteJobs, tokenCandidate, navigate) => {
 

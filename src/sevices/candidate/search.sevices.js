@@ -1,6 +1,6 @@
-import { get } from "../untils/request";
+import { get } from "../../untils/request";
 
-export const getSearch = async (filters) => {
+export const getSearch = async (filters,tokenCandidate) => {
     const params = new URLSearchParams();
 
     for( const key in filters){
@@ -9,6 +9,6 @@ export const getSearch = async (filters) => {
         }
     }
 
-    const result = await get(`search?${params.toString()}`);
+    const result = await get(`search?${params.toString()}`,tokenCandidate);
     return result;
 };

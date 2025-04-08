@@ -1,4 +1,4 @@
-import { get } from "../untils/request"
+import { get } from "../../untils/request"
 
 // [GET] /companies
 export const getListCompany =  async() =>{
@@ -11,3 +11,5 @@ export const getCompanyDetail = async(slugCompany) =>{
     const result = await get(`companies/${slugCompany}`);
     return result;
 };
+
+// [POST]

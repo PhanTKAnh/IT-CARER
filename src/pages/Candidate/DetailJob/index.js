@@ -3,13 +3,13 @@ import {
     HeartOutlined, InboxOutlined, ScheduleOutlined, TableOutlined
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { getDetailJob, getSimilarJob } from "../../../sevices/job.sevices";
+import { getDetailJob, getSimilarJob } from "../../../sevices/candidate/job.sevices";
 import { useNavigate, useParams } from "react-router-dom";
 import SearchList from "../../../components/Candidate/JobsList";
 import { getCookie } from "../../../helpers/cookie";
 import { toggleFavoriteJob } from "../../../helpers/favoriteHelper";
 import ApplyModal from "../../../components/Candidate/ApplyModal";
-import { getProfieCandidate } from "../../../sevices/candidate.sevices";
+import { getProfieCandidate } from "../../../sevices/candidate/candidate.sevices";
 
 function DetailJob() {
     const { slugJob } = useParams();
