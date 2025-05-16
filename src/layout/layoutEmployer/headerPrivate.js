@@ -1,25 +1,29 @@
-import logo from "../../asset/image/logo.png";
-import { LogoutOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { deleteAllCookies } from "../../helpers/cookie";
 
-function HeaderPrivate() {
-    const navigate = useNavigate();
+import { LogoutOutlined, MenuOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
 
+function HeaderPrivate({ company, toggleSidebar, collapsed }) {
+  return (
+    <header className={`employer-header ${collapsed ? "collapsed" : ""}`}>
+      <div className="header-inner-wrap">
+        <div className="header-left">
 
+          <button className="menu-toggle-btn" onClick={toggleSidebar}>
+            <MenuOutlined />
+          </button>
 
-    return (
-        <header className="header-private">
-            <div className="header-private-left">
-                <img src={logo} alt="Logo" />
-            </div>
-            <div className="header-private-right">
-                <span >
-                    <LogoutOutlined /> Đăng xuất
-                </span>
-            </div>
-        </header>
-    );
+          <span className="company-name">{company?.CompanyName}</span>
+        </div>
+
+        <div className="header-right">
+          <NavLink className="logout-btn" to={"/nha-tuyen-dung/logout"}>
+            <LogoutOutlined /> Đăng xuất
+          </NavLink>
+
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default HeaderPrivate;

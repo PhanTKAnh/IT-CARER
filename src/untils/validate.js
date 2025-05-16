@@ -98,6 +98,39 @@ export const employerRegisterSchema = yup.object().shape({
 });
 export const employerLoginSchema = yup.object().shape({
   Email: yup.string().email("Email không hợp lệ").required("Email là bắt buộc!"),
-  Password: yup.string().min(6, "Mật khẩu ít nhất 6 ký tự!").required("Mật khẩu là bắt buộc!"),
+  Password: yup.string().min(3, "Mật khẩu ít nhất 6 ký tự!").required("Mật khẩu là bắt buộc!"),
   
+});
+export const jobSchema = yup.object().shape({
+  Name: yup.string().required('Tên công việc là bắt buộc'),
+  SalaryMin: yup
+    .number()
+    .typeError('Lương tối thiểu phải là số')
+    .min(0, 'Lương không được âm')
+    .required('Lương tối thiểu là bắt buộc'),
+  SalaryMax: yup
+    .number()
+    .typeError('Lương tối đa phải là số')
+    .moreThan(yup.ref('SalaryMin'), 'Lương tối đa phải lớn hơn lương tối thiểu')
+    .required('Lương tối đa là bắt buộc'),
+  Experience: yup
+    .number()
+    .typeError('Kinh nghiệm phải là số')
+    .min(0, 'Kinh nghiệm không được âm')
+    .required('Kinh nghiệm là bắt buộc'),
+  Level: yup.string().required('Cấp độ là bắt buộc'),
+  City: yup.array().min(1, 'Chọn ít nhất 1 thành phố'),
+  Tags: yup.array().min(1, 'Chọn ít nhất 1 tag'),
+  expirationDate: yup.string().required('Ngày hết hạn là bắt buộc'),
+  Detail: yup.string().required('Thông tin chi tiết là bắt buộc'),
+  Requirements: yup.string().required('Yêu cầu công việc là bắt buộc'),
+});
+export const emailSchema = yup.object().shape({
+  subject: yup.string().required("Chủ đề không được để trống!"),
+  content: yup.string().required("Nội dung không được để trống!"),
+});
+export const appointmentSchema = yup.object().shape({
+  time: yup.date().required("Thời gian không được để trống!"),
+  location: yup.string().required("Địa điểm không được để trống!"),
+  note: yup.string(),
 });

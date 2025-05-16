@@ -2,31 +2,32 @@ import { useEffect, useState } from "react";
 import { getProfieCandidate, updateCandidateProfile } from "../../../sevices/candidate/candidate.sevices";
 import { getCookie } from "../../../helpers/cookie";
 import { profileSchema } from "../../../untils/validate";
-import { uploadFile } from "../../../sevices/candidate/uploadFile";
 import { Skeleton } from "antd";
+import { uploadFile } from "../../../sevices/upload/uploadFile";
 
 function MyCandidate() {
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true); // State để theo dõi quá trình tải dữ liệu
+  const [loading, setLoading] = useState(true); 
   const [editingField, setEditingField] = useState(null);
   const [editedValue, setEditedValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
   const tokenCandidate = getCookie("tokenCandidate");
 
   useEffect(() => {
     async function fetchProfile() {
       try {
         const data = await getProfieCandidate(tokenCandidate);
-        setProfile(data);
+       if(data.code === 200){
+        setProfile(data.candidate);
+       }
       } catch (error) {
         console.error("Lỗi khi lấy dữ liệu hồ sơ:", error);
       } finally {
-        setLoading(false); // Dừng loading sau khi dữ liệu được lấy
+        setLoading(false);
       }
     }
     fetchProfile();
-  }, []);
+  }, [tokenCandidate]);
 
   const handleEdit = (field) => {
     setEditingField(field);
@@ -45,7 +46,7 @@ function MyCandidate() {
       await updateCandidateProfile(options, tokenCandidate);
 
       const updatedProfile = await getProfieCandidate(tokenCandidate);
-      setProfile(updatedProfile);
+      setProfile(updatedProfile.candidate);
       setEditingField(null);
       setErrorMessage("");
     } catch (error) {
@@ -87,7 +88,7 @@ function MyCandidate() {
           {loading ? (
             <Skeleton.Avatar size={100} active />
           ) : (
-            <img src={selectedAvatar || profile?.Avatar || "/web/images/common/avatar_placeholder.png"} alt="Avatar" />
+            <img src={ profile?.Avatar || "/web/images/common/avatar_placeholder.png"} alt="Avatar" />
           )}
         </label>
         <input type="file" id="upload" hidden onChange={handleAvatarChange} accept="image/*" />

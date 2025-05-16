@@ -1,6 +1,4 @@
-import { Select, Space } from 'antd';
-
-
+import { Select} from 'antd';
 function SearchCity(props) {
     const {dataCities, onCityChange, defaultValue} = props;
     const handleChange =(options) =>{

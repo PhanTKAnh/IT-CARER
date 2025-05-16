@@ -5,11 +5,11 @@ import {
 import { useEffect, useState } from "react";
 import { getDetailJob, getSimilarJob } from "../../../sevices/candidate/job.sevices";
 import { useNavigate, useParams } from "react-router-dom";
-import SearchList from "../../../components/Candidate/JobsList";
 import { getCookie } from "../../../helpers/cookie";
 import { toggleFavoriteJob } from "../../../helpers/favoriteHelper";
 import ApplyModal from "../../../components/Candidate/ApplyModal";
 import { getProfieCandidate } from "../../../sevices/candidate/candidate.sevices";
+import SimilarJobsList from "../../../components/Candidate/SimilarJobsList";
 
 function DetailJob() {
     const { slugJob } = useParams();
@@ -39,9 +39,13 @@ function DetailJob() {
             }
         };
         fetchApi();
-    }, [slugJob]);
+    }, [slugJob, tokenCandidate,favoriteJobs]);
 
     const handleToggleFavorite = () => {
+        if (!tokenCandidate) {
+        navigate("/nguoi-tim-viec/login"); 
+        return;
+    }
         toggleFavoriteJob(dataDetailJob._id, favoriteJobs, setFavoriteJobs, tokenCandidate, navigate);
     };
     const scrollToSection = (id) => {
@@ -56,9 +60,9 @@ function DetailJob() {
                 <div className="job-left">
                     <div className="job-image">
                         <img src={dataDetailJob?.company?.avatar} alt={dataDetailJob?.company?.CompanyName} />
-                    </div>
-                    <div className="job-logo">
-                        <img src={dataDetailJob?.company?.logo} alt={dataDetailJob?.company?.CompanyName} />
+                        <div className="job-logo">
+                            <img src={dataDetailJob?.company?.logo} alt={dataDetailJob?.company?.CompanyName} />
+                        </div>
                     </div>
                     <div className="job-text">
                         <div className="job-name">{dataDetailJob.Name}</div>
@@ -84,18 +88,18 @@ function DetailJob() {
                                 : "Không yêu cầu kinh nghiệm"}
                         </div>
                         <div className="job-date">
-                            <ScheduleOutlined /> Ngày đăng tuyển 25-02-2025 | Hết hạn trong: 13 Ngày tới
+                            <ScheduleOutlined /> Ngày đăng tuyển 25-02-2025 
                         </div>
                     </div>
                     <div className="info-button">
                         <button onClick={() => setShowModal(true)}>Nộp đơn ngay</button>
-                        <ApplyModal show={showModal} handleClose={() => setShowModal(false)} jobDetail={dataDetailJob} candidateInfo={candidateInfo} tokenCandidate={tokenCandidate}  />
+                        <ApplyModal show={showModal} handleClose={() => setShowModal(false)} jobDetail={dataDetailJob} candidateInfo={candidateInfo} tokenCandidate={tokenCandidate} />
                         <button className={favoriteJobs ? "active" : ""} onClick={handleToggleFavorite}>
                             <HeartOutlined /> {favoriteJobs ? "Đã lưu" : "Lưu"}
                         </button>
                     </div>
                     <div className="job-content">
-                        <ul>
+                        <ul className="job-nav">
                             <li onClick={() => scrollToSection("mo-ta")}>Mô tả</li>
                             <li onClick={() => scrollToSection("ky-nang")}>Kỹ năng yêu cầu</li>
                             <li onClick={() => scrollToSection("chi-tiet")}>Chi tiết công việc</li>
@@ -104,8 +108,9 @@ function DetailJob() {
                         </ul>
                         <div className="job-desc" id="mo-ta">
                             <h1>Mô tả công việc</h1>
-                            <p>{dataDetailJob?.Description}</p>
+                            <div dangerouslySetInnerHTML={{ __html: dataDetailJob?.Description }} />
                         </div>
+
                         <div className="experiece-desc" id="ky-nang">
                             <p>- Tốt nghiệm Cao đẳng / Đại học ngành thiết kế, kiến trúc
 
@@ -146,8 +151,8 @@ function DetailJob() {
                         <div className="contact-company" id="lien-he">
                             <h1>Thông tin liên hệ </h1>
                             <div className="inner-contact">
-                                <p>Tên liên hệ: Ms. Thúy Anh</p>
-                                <p>0937683002</p>
+                                <p>Tên liên hệ: {dataDetailJob?.company?.ContactPerson}</p>
+                                <p> {dataDetailJob?.company?.Phone}</p>
                                 <p>{dataDetailJob?.company?.Address}</p>
                                 <p>- Các ứng viên quan tâm vui lòng gửi hồ sơ trực tuyến qua ItCareer, gửi kèm file hoặc trực tiếp đến tại công ty</p>
                             </div>
@@ -164,10 +169,11 @@ function DetailJob() {
                 </div>
                 <div className="job-right">
                     <h3>Việc tương tự</h3>
-                    <div className="search-left">
-                        <SearchList jobsList={dataSimilar} />
+                    <div className="similar-job-list">
+                        <SimilarJobsList jobsList={dataSimilar} tokenCandidate={tokenCandidate} />
                     </div>
                 </div>
+
             </div>
         </div>
     );

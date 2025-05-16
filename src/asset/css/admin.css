@@ -14,6 +14,7 @@
   width: calc(100% - 20%);
   transition: left 0.3s ease, width 0.3s ease;
   border-bottom: 1px solid #2c3e50;
+  z-index: 333;
 }
 .header-admin.collapsed {
   left: 12%;
@@ -255,9 +256,6 @@ justify-content: center;
   color: #333;
 }
 
-.admin-table tr:hover {
-  background-color: #f0f8ff;
-}
 
 .no-data {
   text-align: center;
@@ -267,12 +265,14 @@ justify-content: center;
 
 /* Action buttons */
 .action-btn {
-  margin-right: 8px;
   padding: 6px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  margin: 3px 5px 3px 2px;
 }
 
 .action-btn.edit {
@@ -408,8 +408,6 @@ justify-content: center;
 }
 /*  */
 .admin-company {
-  max-width: 900px;
-  margin: 40px auto;
   padding: 24px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -497,4 +495,207 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+.admin-company__actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.admin-company__button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-company__button.approve {
+  background-color: #0a7b42;
+  color: white;
+}
+
+.admin-company__button.reject {
+  background-color: #d93025;
+  color: white;
+}
+
+.admin-company__button:hover {
+  opacity: 0.9;
+}
+
+/* tagsname */
+.tag-create-container {
+
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.tag-create-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.tag-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-form label {
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.tag-form input,
+.tag-form select,
+.tag-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.tag-form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1890ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tag-form button:hover {
+  background-color: #1470cc;
+}
+.admin-status-checkbox-group {
+  display: flex;
+  gap: 24px;
+  margin: 12px 0;
+}
+
+.admin-status-checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.admin-status-checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1890ff;
+}
+/* setting  */
+
+.settings {
+
+}
+
+.settings__title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.settings__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__group {
+  margin-bottom: 20px;
+}
+
+.settings__label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.settings__input,
+.settings__input-file {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.settings__input-file {
+  margin-top: 10px;
+}
+
+.settings__choose-file-label {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.settings__choose-file-label:hover {
+  background-color: #0056b3;
+}
+
+/* Preview ảnh */
+.settings__preview-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.settings__image-preview {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* Slider */
+.settings__slider {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.settings__slider-value {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+/* Các input khác */
+.settings__input {
+  margin-top: 5px;
+}
+
+.settings__actions {
+  display: flex;
+  justify-content: end;
+}
+
+.settings__btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.settings__btn:hover {
+  background-color: #0056b3;
 }

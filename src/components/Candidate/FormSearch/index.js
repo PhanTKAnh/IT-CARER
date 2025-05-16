@@ -1,6 +1,6 @@
 import { Input } from "antd";
 import SearchCity from "./SeachCity";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 import { getListCities } from "../../../sevices/candidate/city.sevices";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -45,13 +45,13 @@ function FormSearch({ defaultKeyword, defaultCity }) {
   };
   const handleCityChange = (values) => {
     setSelectedCity(values);
-    const params = new URLSearchParams(location.search);
-    if (values.length > 0) {
-      params.set("city", values.join(","));
-    } else {
-      params.delete("city");
-    }
-    navigate(`/search?${params.toString()}`);
+    // const params = new URLSearchParams(location.search);
+    // if (values.length > 0) {
+    //   params.set("city", values.join(","));
+    // } else {
+    //   params.delete("city");
+    // }
+    // navigate(`/search?${params.toString()}`);
   };
 
 

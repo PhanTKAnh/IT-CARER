@@ -3,39 +3,57 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import $ from 'jquery';
 import 'slick-carousel';
+import FormSearch from '../../../components/Candidate/FormSearch';
+import { useSettings } from '../../../context/SettingGsneral';
+import { useMemo } from 'react';
 
 function Slide() {
+    const { settings } = useSettings();
+
+    const slideImages = useMemo(() => {
+        return settings?.sliderImages || [];
+    }, [settings]);
+
+
     useEffect(() => {
-        // Đảm bảo Slick chỉ chạy khi component đã render
         const $slider = $('.inner-slide');
 
-        if ($slider.length) {
+        if ($slider.length && slideImages.length && !$slider.hasClass('slick-initialized')) {
             $slider.slick({
-              dots: true,
-              infinite: true,
-              speed: 1000,  // Thời gian chuyển động của mỗi slide
-              autoplay: true,  // Bật chế độ tự động
-              autoplaySpeed: 3000,  // Thời gian giữa các lần chuyển slide (3000ms = 3 giây)
-              fade: true,   // Thêm hiệu ứng fade chuyển slide
-              slidesToShow: 1,
-              slidesToScroll: 1,
+                dots: true,
+                infinite: true,
+                speed: 1000,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                fade: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
             });
-          }
+        }
 
-        // Clean up slick initialization when component unmounts
         return () => {
-            if ($slider.length) {
+            if ($slider.length && $slider.hasClass('slick-initialized')) {
                 $slider.slick('unslick');
             }
         };
-    }, []);
-
+    }, [slideImages]);
     return (
-        <div className="inner-slide">
-            <img src="https://static.careerlink.vn/web/images/covers/banner_zalo_oa.jpg" className="slick-lazyload-error" />
-            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" className="slick-lazyload-error" />
-            <img src="https://static.careerlink.vn/web/images/covers/mobile_app.jpeg" className="slick-lazyload-error" />
-
+        <div className="slide-container">
+            <FormSearch />
+            <div className="inner-slide">
+                {slideImages.length > 0 ? (
+                    slideImages.map((img, index) => (
+                        <img
+                            key={index}
+                            src={img}
+                            alt={`Slide ${index + 1}`}
+                            loading="lazy"
+                        />
+                    ))
+                ) : (
+                    <p style={{ textAlign: 'center', padding: '20px' }}>Đang tải slide...</p>
+                )}
+            </div>
         </div>
     );
 }

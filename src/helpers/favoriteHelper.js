@@ -1,11 +1,9 @@
 import { patchfavoriteJobs } from "../sevices/candidate/job.sevices";
 
-export const toggleFavoriteJob = async (jobId, favoriteJobs, setFavoriteJobs, tokenCandidate, navigate) => {
+export const toggleFavoriteJob = async (jobId, favoriteJobs, setFavoriteJobs, tokenCandidate) => {
 
     const newFavoriteState = !favoriteJobs 
-    console.log(newFavoriteState)
     const typefavorite = newFavoriteState ? "favorite" : "unfavorite";
-
     setFavoriteJobs(prev => ({
         ...prev,
         [jobId]: newFavoriteState, 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import{EnvironmentOutlined } from "@ant-design/icons"
+import { EnvironmentOutlined } from "@ant-design/icons"
 function CompanyItem(props) {
     const { dataCompany } = props;
     return (
@@ -9,10 +9,10 @@ function CompanyItem(props) {
                     <div key={item._id} className="inner-card">
                         <NavLink to={`/${item.slug}`}>
                             <div className="inner-image">
-                                <img src={item.avatar} />
+                                <img src={item.avatar} alt={item.CompanyName || "Avatar của công ty"} />
                             </div>
                             <div className="inner-logo">
-                                <img src={item.logo} />
+                                <img src={item.logo} alt={item.CompanyName || "Logo của công ty"} />
                             </div>
                         </NavLink>
                         <div className="inner-content">
@@ -23,7 +23,7 @@ function CompanyItem(props) {
                             </NavLink>
                             <div className="inner-text">
                                 Đang tuyển :
-                                {item.jobs?.map(job =>  job.Name).join(", ")}
+                                {item.jobs?.map(job => job.Name).join(", ")}
                             </div>
                         </div>
                         <div className="footer-cart">
@@ -31,16 +31,17 @@ function CompanyItem(props) {
                                 {item.jobCount} đang tuyển
                             </div>
                             <div className="inner-position">
-                            <EnvironmentOutlined />
-                            {item.jobs?.map(job =>  job.cities?.map(city => city.CityName)).join(", ")}
+                                <EnvironmentOutlined />
+                                {[...new Set(
+                                    item.jobs?.flatMap(job => job.cities?.map(city => city.CityName))
+                                )].join(", ")}
                             </div>
                         </div>
                     </div>
                 ))
             }
-
-
         </>
     )
 }
+
 export default CompanyItem;

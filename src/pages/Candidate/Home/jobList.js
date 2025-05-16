@@ -13,7 +13,32 @@ function JobList() {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const tokenCandidate = getCookie("tokenCandidate");
-    const pageSize = 15;
+    const [pageSize, setPageSize] = useState(15);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            let newPageSize;
+
+            if (width < 768) {
+                newPageSize = 4;
+            } else if (width < 919) {
+                newPageSize = 6;
+            } else if (width < 1024) {
+                newPageSize = 8;
+            } else if (width < 1350) {
+                newPageSize = 12;
+            } else {
+                newPageSize = 15;
+            }
+
+            setPageSize((prev) => (prev !== newPageSize ? newPageSize : prev));
+        };
+
+        handleResize(); // Gọi ngay khi load
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,25 +49,25 @@ function JobList() {
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
         fetchData();
-    }, []);
+    }, [tokenCandidate]);
 
     const totalPages = getTotalPages(dataJob.length, pageSize);
     const displayedJobs = dataJob.slice((page - 1) * pageSize, page * pageSize);
 
     return (
         <div className="container">
-            <h2>Việc làm hấp dẫn</h2>
+            <h2 className="section-heading">Việc làm hấp dẫn</h2>
             <div className="inner-job">
                 <ButtonPagination
                     title={<LeftOutlined />}
                     onClick={() => handlePrevPage(page, setPage)}
                     disabled={page === 1}
                 />
-                
+
                 <div className="job-list">
                     {loading ? (
                         Array.from({ length: pageSize }).map((_, index) => (

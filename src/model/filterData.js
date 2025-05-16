@@ -1,4 +1,5 @@
 export const dataLevel = [
+    { LevelName: "Intern" },
     { LevelName: "Fresher" },
     { LevelName: "Junior" },
     { LevelName: "Mid-level" },

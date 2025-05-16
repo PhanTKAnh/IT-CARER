@@ -17,11 +17,15 @@ function CompanyPage(){
 
        return (
            <div className="container">
-               <h1>Nhà tuyển dụng hàng đầu</h1>
+               <div className="container-company">
+               <h2 className="section-heading ">Nhà tuyển dụng hàng đầu</h2>
                <div className="inner-company">
+               
                    <div className="list-company">
+
                        <CompanyItem dataCompany={dataCompany} />
                    </div>
+               </div>
                </div>
         
            </div>

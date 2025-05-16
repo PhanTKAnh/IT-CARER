@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { postAdminForgot } from "../../../sevices/employer/company.sevice";
+import { postForgot } from "../../../sevices/employer/company.sevice";
 
 // Schema validate chỉ kiểm tra email
 const forgotPasswordSchema = yup.object().shape({
@@ -26,7 +26,7 @@ function ForgetAminPassword() {
         setErrorMessage("");
 
         try {
-            const response = await postAdminForgot({ email: data.Email });
+            const response = await postForgot({ Email: data.Email });
 
             if (response.code === 200) {
                 navigate("/nha-tuyen-dung/reset/otpPassword");

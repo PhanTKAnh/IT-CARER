@@ -2,10 +2,10 @@
 .header {
     background: #ffffff;
     padding: 0 40px;
-    /* position: fixed;
+    position: sticky;
     z-index: 9999;
     top: 0;
-    left: 0; */
+    left: 0;
     width: 100%;
 
 }
@@ -16,22 +16,24 @@
     align-items: center;
 }
 
-.header .inner-logo a {
-    display: flex;
-    align-items: center;
+.header .inner-logo  {
+ text-align: center;
+ margin: 0;
 }
 
 .header .inner-logo img {
-    height: 60px;
-    width: auto;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
 }
 
-.header .inner-logo span {
-    font-size: 22px;
+.header .inner-logo p {
+    font-size: 14px;
     font-weight: 600;
-    color: var(--color-text);
-    margin-left: 10px;
+    color: #0056b3;
+    margin: 0;
 }
+
 
 .header-search-form .inner-search {
     display: flex;
@@ -207,6 +209,9 @@
 }
 
 /* Footer */
+.footer{
+    padding: 30px 0;
+}
  .inner-dropdown .inner-footer {
     padding-top: 5px;
 }
@@ -255,7 +260,44 @@
 
 
 }
-
+.section-heading {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #333;
+    position: relative;
+  }
+  
+  .section-heading::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #007bff; /* hoặc màu chủ đạo của bạn */
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  
+.slide-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .inner-slide {
+    width: 100%;
+    height: 500px; 
+    
+  }
+  
+  .inner-slide img {
+    width: 100%  !important; ;
+    height: 500px !important; 
+    height: 100%;
+    object-fit: contain; 
+    display: block;
+  }
+  
 /* =================== CẢI THIỆN RESPONSIVE =================== */
 /* Hiển thị menu khi mở */
 @media (max-width: 991.98px) {
@@ -426,24 +468,19 @@ footer {
 /* End Footer */
 
 /* Input search */
-.search-section .inner-slide {
-    position: relative;
-}
-
 .search-section .inner-search {
     position: absolute;
-    display: flex;
-    flex-wrap: wrap; 
+    display: flex
+;
+    flex-wrap: wrap;
     gap: 12px;
     align-items: center;
     justify-content: center;
-    width: 90%; 
-    max-width: 1400px; 
-    height: auto;
+    width: 100%;
     border-radius: 12px;
     z-index: 1;
-    padding: 12px 20px;
-    top: 25%;
+    padding: 12px 55px;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -506,14 +543,34 @@ footer {
 }
 
 @media (max-width: 1200.98px) {
-    .search-section .inner-search {
-        top: 15%;
+    .slide-container{
+        top: 58px;
     }
+    /* .search-section .inner-search {
+        top: 15%;
+    } */
+    .search-suggestion .ant-input,
+    .search-city .ant-select-selector {
+        height: 43px;
+    }
+    .search-button input {
+        height: 43px;
+    }
+    
 }
 @media (max-width: 991.98px) {
-    .search-section .inner-search {
-        top: 11%;
+    .search-suggestion .ant-input,
+    .search-city .ant-select-selector {
+        height: 38px;
     }
+    .search-button input {
+        height: 38px;
+    }
+    :where(.css-dev-only-do-not-override-1v613y0).ant-select-multiple .ant-select-selection-placeholder {
+        top: 34%;
+
+    }
+    
 }
 @media (max-width: 768px) {
     .search-section .inner-search {
@@ -521,7 +578,7 @@ footer {
         padding: 16px;
         border-radius: 8px;
         max-width: 380px;
-        top: 11%;
+        top: 49%;
     }
 
     .search-city {
@@ -549,7 +606,7 @@ footer {
 .inner-job {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
     padding: 10px;
     position: relative;
@@ -559,7 +616,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 8px;
-    width: 80%;
+    width: 100%;
 }
 
 
@@ -591,7 +648,7 @@ footer {
     width: 80px;
     height: 80px;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 
@@ -629,34 +686,48 @@ footer {
 
 /* 🔥 Responsive */
 
-@media (max-width: 1200px) {
+/* Laptop nhỏ: < 1350px — pageSize = 12 */
+@media (max-width: 1349.98px) {
     .inner-job .job-list {
-        grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); /* Hiển thị 2 cột */
     }
-}
-@media (max-width: 991.98px) {
+  }
+  
+  /* Tablet: < 1024px — pageSize = 8 */
+  @media (max-width: 1023.98px) {
     .inner-job .job-list {
-        grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr); /* Vẫn 2 cột nhưng có thể nhỏ hơn */
     }
-
+  
     .inner-job .job-list .inner-card .inner-left img {
-        width: 60px;
-        height: 60px;
+      width: 70px;
+      height: 70px;
     }
-}
-
-@media (max-width: 599px) {
+  }
+  
+  /* Mobile lớn: < 768px — pageSize = 6 */
+  @media (max-width: 767.98px) {
     .inner-job .job-list {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr; /* 1 cột */
     }
-
-    
+  
     .inner-job .job-list .inner-card .inner-left img {
-        width: 60px;
-        height: 60px;
+      width: 60px;
+      height: 60px;
     }
-}
-
+  }
+  
+  /* Mobile nhỏ: < 480px — pageSize = 4 */
+  @media (max-width: 479.98px) {
+    .inner-job .job-list {
+      grid-template-columns: 1fr; /* 1 cột */
+    }
+  
+    .inner-job .job-list .inner-card .inner-left img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 
 /* End Job  List */
 
@@ -708,9 +779,10 @@ footer {
 }
 
  .tag-list .inner-card .inner-image img {
+    border-radius: 50%;
     width: 80%;
     height: 80%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 
@@ -721,7 +793,7 @@ footer {
 }
 
  .tag-list .inner-text {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
@@ -735,14 +807,15 @@ footer {
 /* 🔥 Responsive */
 
 
-@media (min-width: 1024px) {
+
+@media (max-width: 1350px) {
     .inner-tag .tag-list {
-        grid-template-columns: repeat(6, minmax(220px, 1fr));
+        grid-template-columns: repeat(4, minmax(180px, 1fr));
     }
 }
 
 
-@media (max-width: 1023px) {
+@media (max-width: 999px) {
     .inner-tag .tag-list {
         grid-template-columns: repeat(3, minmax(180px, 1fr));
     }
@@ -750,13 +823,6 @@ footer {
 
 
 @media (max-width: 767px) {
-    .inner-tag .tag-list {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media (max-width: 599px) {
     .inner-tag .tag-list {
         grid-template-columns: 1fr;
     }
@@ -849,6 +915,9 @@ footer {
 /* end Button */
 
 /* list-company */
+.container-company{
+    margin:36px 0;
+}
 .inner-company  {
      display: flex;
     align-items: center;
@@ -862,7 +931,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Mặc định 3 cột */
     gap: 15px;
-    width: 80%;
+    width: 100%;
 }
 
 .list-company .inner-card {
@@ -928,10 +997,16 @@ footer {
     margin-bottom: 8px;
 }
 
- .list-company .inner-content .inner-text {
+.list-company .inner-content .inner-text {
     font-size: 16px;
     color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* số dòng muốn hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .list-company .footer-cart {
     display: block;
     width: 100%;
@@ -945,6 +1020,11 @@ footer {
     font-size: 14px;
     margin-bottom: 10px;
     color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* số dòng muốn hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 1300px) {
@@ -967,9 +1047,8 @@ footer {
 .inner-result {
     padding: 16px;
     border-radius: 6px;
-    margin-bottom: 20px;
+    margin:0 0 20px 0;
 }
-
 .inner-result h4 {
     font-size: 22px;
     font-weight: bold;
@@ -998,9 +1077,6 @@ footer {
 
 .search-list .search-right {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .search-list .search-right .search-image {
@@ -1114,7 +1190,6 @@ color: #0073e6;
 /* 📌 Responsive cho Tablet */
 @media (max-width: 991.98px) {
     .search-list {
-        flex-direction: column;
         padding: 0;
     }
 
@@ -1123,12 +1198,10 @@ color: #0073e6;
     }
 
     .search-card {
-        flex-direction: column;
         padding: 15px;
     }
 
     .search-card .inner-left {
-        flex: 1;
         width: 100%;
     }
 
@@ -1148,12 +1221,10 @@ color: #0073e6;
     }
 
     .search-card {
-        flex-direction: column;
         padding: 12px;
     }
 
     .search-card .inner-left {
-        flex: 1;
         width: 100%;
     }
 
@@ -1196,20 +1267,24 @@ color: #0073e6;
 
 
 /* CSS chuẩn BEM */
-
+.detail-company{
+}
 .detail-company__header {
     padding: 30px;
     background-color: #F1F5F9;
     text-align: center;
 }
+.detail-company__cover{
+    position: relative;
+}
 .detail-company__cover img {
     width: 100%;
-    height: 50vh;
+    height: 350px;
     object-fit: cover;
 }
 .detail-company__logo {
     position: absolute;
-    top: 70%;
+    top: 125%;
     left: 197px;
     transform: translateY(-50%);
     background: #fff;
@@ -1288,7 +1363,6 @@ color: #0073e6;
 
 .login-container {
     display: flex;
-    height: 80vh;
 }
 
 .login__left, .login__right {
@@ -1398,8 +1472,6 @@ color: #0073e6;
 /* register */
 .container-register {
     display: flex;
-    height: 80vh;
-    margin: 0;
     padding: 0;
 }
 
@@ -1458,6 +1530,7 @@ color: #0073e6;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 40px 0 50px 0;
 }
 
 .container-register .inner-right .register .register-title {
@@ -1543,8 +1616,9 @@ color: #0073e6;
 
 /* detail job */
 .detail-job {
-    display: flex;
-    gap: 20px; /* Khoảng cách giữa hai khối */
+    display: flex
+;
+    gap: 20px;
 }
 
 .detail-job .job-left {
@@ -1565,20 +1639,17 @@ color: #0073e6;
 /* Hình ảnh chính */
 .detail-job .job-left .job-image {
     position: relative;
-    width: 100%;
-    height: 350px;
-    overflow: hidden;
 }
 .detail-job .job-left .job-image img {
     width: 100%;
-    height: 100%;
+    height: 350px;
     object-fit: cover;
 }
 .detail-job .job-left .job-logo{
     background: #ffff;
     position: absolute;
-    bottom: 400px;
-    left: 279px;
+    bottom: -53px;
+    left: 113px;
     width: 100px;
     height: 100px;
     border-radius: 8px;
@@ -1590,19 +1661,20 @@ color: #0073e6;
    width: 100%;
    height: 100%;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Tên công việc */
 .detail-job .job-left .job-text {
-    position: relative;
     text-align: center;
+    background: #fff;
 }
 
 .detail-job .job-left .job-name {
-    font-size: 20px;
+       font-size: 20px;
     font-weight: bold;
     color: #333;
+    margin: 5px 0 10px 0;
 }
 
 .detail-job .job-left .company-name {
@@ -1680,15 +1752,14 @@ color: #0073e6;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.detail-job .job-left .job-content ul {
-    list-style: none;
+.detail-job .job-left .job-content .job-nav {
     display: flex;
     gap: 10px;
     padding: 0;
     margin-bottom: 10px;
 }
 
-.detail-job .job-left .job-content ul li {
+.detail-job .job-left .job-content .job-nav li {
     background: #007bff;
     color: #fff;
     padding: 8px 12px;
@@ -1697,7 +1768,7 @@ color: #0073e6;
     font-size: 14px;
 }
 
-.detail-job .job-left .job-content ul li:hover {
+.detail-job .job-left .job-content .job-nav li:hover {
     background: #0056b3;
 }
 
@@ -1986,14 +2057,32 @@ body.modal-open {
     background: white;
     padding: 30px;
     border-radius: 12px;
-    width: 420px;
-    max-width: 90%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-    text-align: left; /* Căn lề trái cho văn bản */
+    width: 450px;
+    max-width: 100%;
+    max-height: 80vh; 
+    overflow-y: auto;  
+    scroll-behavior: smooth;
+    text-align: left;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
 }
-
+.modal-content::-webkit-scrollbar {
+    width: 1px; 
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background-color: #ccc; 
+    border-radius: 4px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+  }
+  
+  .modal-content::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
 
 /* Hiệu ứng mở modal */
 @keyframes fadeIn {
@@ -2047,7 +2136,7 @@ h4 {
 }
 
 /* Ô nhập */
-input[type="tel"], input[type="file"] {
+input[type="tel"] {
     width: 100%;
     padding: 12px;
     margin-top: 5px;
@@ -2569,3 +2658,85 @@ input[type="file"] {
 }
 
 /*  */
+/* simlar */
+/* Khối chứa thông tin công việc */
+.job-card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Khối chứa hình ảnh công ty */
+.job-card__image-container {
+    flex: 1;
+    max-width: 80px;
+    margin-right: 20px;
+}
+
+.job-card__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Khối chứa thông tin công việc */
+.job-card__info-container {
+    flex: 3;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Tiêu đề công việc */
+.job-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+/* Tên công ty */
+.job-card__company-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* Địa điểm làm việc */
+.job-card__location {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Mức lương và cấp bậc */
+.job-card__salary-level {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Nút yêu thích */
+.job-card__favorite-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.job-card__favorite-icon {
+    font-size: 20px;
+    color: #888;
+    transition: color 0.3s;
+}
+
+.job-card__favorite-icon.active {
+    color: #ff4d4f;
+}
+
+.job-card__favorite-btn:hover .job-card__favorite-icon {
+    color: #ff4d4f;
+}

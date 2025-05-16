@@ -1,31 +1,29 @@
-
 import { NavLink } from "react-router-dom";
-import logo from "../../asset/image/logo.png";
 import DropDown from "../../components/Employer/Dropdown";
-import { getCookie } from "../../helpers/cookie";
+import { useSettings } from "../../context/SettingGsneral";
 
-function Header() {
-
-  const tokenCompany = getCookie("tokenCompany");
+function HeaderDefault() {
+  const { settings } = useSettings(); 
+  const { logo, websiteName } = settings; 
 
   return (
     <header className="header">
       <div className="inner-wrap">
-       
-        <div className="inner-logo">
+        <h1 className="inner-logo">
           <NavLink to="/">
-            <img src={logo} alt="Logo" />
+            <img src={logo || "/default-logo.png"} alt="Logo" />
+            <p>{websiteName || "IT CARRER"}</p>
           </NavLink>
-        </div>
-        
+        </h1>
+
         <div className="inner-button">
           <div className="inner-dropdown">
-            <DropDown/>
+            <DropDown />
           </div>
           <span>|</span>
           <div className="inner-link">
-            <NavLink to="/">
-              <p>Cho người tìm việc</p>
+            <NavLink to="/" className="link-to-user">
+              Cho người tìm việc
             </NavLink>
           </div>
         </div>
@@ -34,5 +32,4 @@ function Header() {
   );
 }
 
-export default Header;
- 
+export default HeaderDefault;

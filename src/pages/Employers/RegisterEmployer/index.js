@@ -1,16 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect, useState } from 'react';
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { QuantityPeople } from '../../../model/registerCompany';
 import { getListCities } from '../../../sevices/candidate/city.sevices';
 import { employerRegisterSchema } from '../../../untils/validate';
 import { postEmployer } from '../../../sevices/employer/company.sevice';
-import { notification } from 'antd';
+import Swal from 'sweetalert2'; 
 
 function EmployerRegistration() {
-    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState({
         Password: false,
         confirmPassword: false,
@@ -18,7 +16,6 @@ function EmployerRegistration() {
     const [dataCities, setDataCities] = useState([]);
     const [loading, setLoading] = useState(false);  
     const [errorMessage, setErrorMessage] = useState("");
-
 
     const {
         register,
@@ -50,9 +47,9 @@ function EmployerRegistration() {
 
     const onSubmit = async (data) => {
         setLoading(true); // Bật loading khi gửi form
-    
+
         const fullAddress = `${data.Address}, ${data.City}, Việt Nam`;
-    
+
         const submitData = {
             CompanyName: data.CompanyName,
             Email: data.Email,
@@ -62,30 +59,30 @@ function EmployerRegistration() {
             ContactPerson: data.ContactPerson,
             Address: fullAddress,
         };
-    
+
         try {
             const employer = await postEmployer(submitData);
-    
+
             if (employer.code === 200) {
-                notification.success({
-                    message: 'Đăng ký thành công!',
-                    description: 'Vui lòng kiểm tra email để xác minh tài khoản.',
+                // Sử dụng SweetAlert2 để hiển thị thông báo thành công
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Đăng ký thành công!',
+                    text: 'Vui lòng kiểm tra email để xác minh tài khoản.',
                 });
-    
-                // Reset form sau khi thành công
+
                 reset();
-            }else {
+                setErrorMessage("")
+            } else {
                 setErrorMessage(employer.message || "Đăng ký thất bại, vui lòng thử lại!");
             }
         } catch (error) {
-            setErrorMessage( error);
+            setErrorMessage(error.message || "Có lỗi xảy ra!");
         } finally {
             // Đảm bảo set loading = false dù thành công hay thất bại
             setLoading(false);
         }
     };
-    
-    
 
     const togglePassword = (field) => {
         setShowPassword((prev) => ({

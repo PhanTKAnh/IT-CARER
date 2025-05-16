@@ -1,6 +1,5 @@
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { toggleFavoriteJobId } from '../../../helpers/favoriteHelper';
-import { getCookie } from '../../../helpers/cookie';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 function SearchList(props) {
@@ -58,7 +57,6 @@ function SearchList(props) {
                 </div>
             </NavLink>
            
-          {/* Để nút bấm yêu thích bên ngoài NavLink */}
           <button className="job-card__favorite-btn" onClick={() => handleToggleFavorite(data._id)}>
                 {favoriteJobs[data._id] ? <HeartFilled className="job-card__favorite-icon active" /> : <HeartOutlined className="job-card__favorite-icon" />}
             </button>

@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
-import { HeartOutlined, HeartFilled, SendOutlined, ReconciliationOutlined, LogoutOutlined } from "@ant-design/icons";
+import { HeartOutlined, SendOutlined, LogoutOutlined } from "@ant-design/icons";
 import logo from "../../../asset/image/logo.png";
 import { getCookie } from "../../../helpers/cookie";
 import { getRefreshToken } from "../../../helpers/getToken";
@@ -26,41 +25,44 @@ function DropDown() {
         return () => clearInterval(interval);
     }, [tokenCandidate]);
 
-    const fetchApi = async () => {
-        let token = tokenCandidate;
 
-        if (!token) {
-            try {
-                const refreshedToken = await getRefreshToken();
-                if (refreshedToken) {
-                    setTokenCandidate(refreshedToken);
-                    token = refreshedToken;
-                } else {
+    useEffect(() => {
+        const fetchApi = async () => {
+    
+            if (!tokenCandidate) {
+                try {
+                    const refreshedToken = await getRefreshToken();
+                    if (refreshedToken) {
+                        setTokenCandidate(refreshedToken);
+                    } else {
+                        // navigate("/nguoi-tim-viec/login"); 
+                        return;
+                    }
+                } catch (error) {
+                    console.error("Lỗi khi refresh token:", error);
                     navigate("/nguoi-tim-viec/login");
                     return;
                 }
-            } catch (error) {
-                console.error("Lỗi khi refresh token:", error);
-                navigate("/nguoi-tim-viec/login");
-                return;
             }
-        }
-
-        if (token) {
-            try {
-                const candidate = await getProfieCandidate(token);
-                setDataCandidate(candidate);
-            } catch (error) {
-                console.error("Lỗi khi lấy dữ liệu ứng viên:", error);
-                navigate("/nguoi-tim-viec/login");
+    
+            if (tokenCandidate) {
+                try {
+                    const candidate = await getProfieCandidate(tokenCandidate);
+                    if(candidate.code === 200){
+                        setDataCandidate(candidate.candidate);
+                     
+                    }
+                    
+                } catch (error) {
+                    console.error("Lỗi khi lấy dữ liệu ứng viên:", error);
+                    navigate("/nguoi-tim-viec/login");
+                }
             }
-        }
-    };
-
-    useEffect(() => {
+        };
+    
         fetchApi();
-    }, [tokenCandidate]);
-
+    }, [tokenCandidate,navigate]);
+    console.log(dataCandidate)
     const handleOnclick = useCallback(() => {
         setIsOpen((prev) => !prev);
     }, []);
@@ -106,7 +108,6 @@ function DropDown() {
                             </div>
                         </div>
                         <div className="inner-right">
-                            <p> <ReconciliationOutlined /> Hồ sơ xin việc </p>
                             <Link to={"/nguoi-tim-viec/cong-viec-luu"}> <p> <HeartOutlined /> Việc đã lưu</p></Link>
                             <Link to={"/nguoi-tim-viec/viec-da-ung-tuyen"}> <p> <SendOutlined /> Việc đã ứng tuyển</p></Link>
                         </div>
@@ -123,8 +124,7 @@ function DropDown() {
                                             alt="avatar"
                                             height="28"
                                             width="28"
-                                            src={dataCandidate.
-                                                Avatar}
+                                            src={dataCandidate.Avatar}
                                         />
                                     </div>
                                     <div className="inner-text">

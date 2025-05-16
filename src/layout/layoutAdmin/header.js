@@ -1,6 +1,4 @@
 import DropDown from "../../components/Admin/Dropdown";
-import logo from "../../asset/image/logo.png";
-import { NavLink } from "react-router-dom";
 
 function Header({ onToggleSidebar, collapsed }) {
   return (

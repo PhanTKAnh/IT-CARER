@@ -4,11 +4,14 @@ import { deletedCompany, ListCompany, updateCompanyStatus } from "../../../sevic
 import AdminSearchFilter from "../../../components/Admin/AdminSearchFiilter";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { getCookie } from "../../../helpers/cookie";
 
 function ManagerAdmin() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const navigate = useNavigate();
+  const tokenAdmin = getCookie("tokenAdmin")
+
 
   const headers = [
     { key: "index", label: "STT" },
@@ -22,7 +25,7 @@ function ManagerAdmin() {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const response = await ListCompany();
+        const response = await ListCompany(tokenAdmin);
         if (response.code === 200 && Array.isArray(response.listCompany)) {
           setData(response.listCompany);
           setFilteredData(response.listCompany);
@@ -32,25 +35,25 @@ function ManagerAdmin() {
       }
     };
     fetchApi();
-  }, []);
+  }, [tokenAdmin]);
 
   const handleStatusChange = (status) => {
     if (status === "") {
       setFilteredData(data);
     } else {
       const filtered = data.filter((company) => company.Status === status);
-      setFilteredData(filtered);
+      setFilteredData(filtered); 
     }
   };
 
   const handleStatusToggle = async (slug, currentStatus) => {
     const newStatus = currentStatus === "active" ? "inactive" : "active";
     try {
-      const result = await updateCompanyStatus(slug, newStatus);
+      const result = await updateCompanyStatus(slug, newStatus,tokenAdmin);
       if (result?.code === 200) {
         const updatedCompany = result.company;
         const newData = data.map((item) =>
-          item.slug === updatedCompany.slug ? updatedCompany : item
+          item.slug === updatedCompany.slug ? updatedCompany : item 
         );
         setData(newData);
         setFilteredData(newData);

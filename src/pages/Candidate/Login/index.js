@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { loginSchema } from "../../../untils/validate";
-import { message } from "antd";
 import { setCookie } from "../../../helpers/cookie";
 import { postLoginCandidate } from "../../../sevices/candidate/candidate.sevices";
+import Swal from "sweetalert2";
 
 function Login() {
     const navigate = useNavigate();
@@ -18,27 +18,53 @@ function Login() {
         handleSubmit,
         formState: { errors }
     } = useForm({ resolver: yupResolver(loginSchema) });
+
     const onSubmit = async (data) => {
-        setErrorMessage("");
+        setErrorMessage(""); // Reset error messages
 
         const option = {
             Email: data.Email,
             Password: data.Password
         };
+        console.log(option);
 
         try {
             const response = await postLoginCandidate(option);
             if (response.code === 200) {
-                setCookie("tokenCandidate", response.tokenCandidate, 60); 
-                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); 
-                message.success("Đăng nhập thành công!");
-                navigate("nha-tuyen-dung/dashbroad");
+                // Set cookies on successful login
+                setCookie("tokenCandidate", response.tokenCandidate, 60); // 1 hour
+                setCookie("refreshTokenCandidate", response.refreshTokenCandidate, 30 * 24 * 60); // 30 days
+
+                // Display success message with SweetAlert2
+                Swal.fire({
+                    title: "Đăng nhập thành công!",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+
+                // Redirect to homepage
+                navigate("/");
             } else if (response.code === 401) {
                 setErrorMessage("Sai email hoặc mật khẩu!");
+
+                // Display error message with SweetAlert2
+                Swal.fire({
+                    title: "Lỗi!",
+                    text: "Sai email hoặc mật khẩu!",
+                    icon: "error",
+                    confirmButtonText: "Thử lại"
+                });
             }
         } catch (error) {
             setErrorMessage("Có lỗi xảy ra, vui lòng thử lại sau!");
-            message.error("Có lỗi xảy ra, vui lòng thử lại sau!");
+
+            // Display error message with SweetAlert2
+            Swal.fire({
+                title: "Có lỗi xảy ra!",
+                text: "Vui lòng thử lại sau!",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
         }
     };
 
@@ -60,7 +86,6 @@ function Login() {
                         <input type="text" placeholder="Email" {...register("Email")} />
                         <i><UserOutlined /></i>
                         {errors.Email && <p className="login__error">{errors.Email.message}</p>}
-
                     </div>
 
                     <div className="login__input-box">
@@ -69,7 +94,6 @@ function Login() {
                             {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                         </i>
                         {errors.Password && <p className="login__error">{errors.Password.message}</p>}
-
                     </div>
 
                     <div className="login__options">
@@ -80,16 +104,14 @@ function Login() {
 
                     {errorMessage && <p className="login__error">{errorMessage}</p>}
 
-                    <button className="login__button" type="submit">Login</button>
+                    <button className="login__button" type="submit">Đăng nhập </button>
 
                     <p className="login__register">
-                        Don't have an account? <NavLink to="/nguoi-tim-viec/register"><b>Register</b></NavLink>
+                        Bạn chưa có tài khoản? <NavLink to="/nguoi-tim-viec/register"><b>Đăng ký</b></NavLink>
                     </p>
                 </form>
-
             </div>
         </div>
-
     );
 }
 

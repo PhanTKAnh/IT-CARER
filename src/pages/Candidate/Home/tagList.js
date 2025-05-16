@@ -11,7 +11,35 @@ function TagList() {
     const [dataTag, setDataTag] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const pageSize = 6;
+    const [pageSize, setPageSize] = useState(6); 
+
+    useEffect(() => {
+        const handleResize = () => {
+          const width = window.innerWidth;
+          let newPageSize;
+      
+          if (width < 767) {
+            newPageSize = 1;
+          } else if (width < 999) {
+            newPageSize = 3;
+          } else if (width < 1350) {
+            newPageSize = 4;
+          } else {
+            newPageSize = 6;
+          }
+      
+          setPageSize((prev) => {
+            return prev !== newPageSize ? newPageSize : prev;
+          });
+        };
+      
+        handleResize(); // Gọi ngay khi load
+      
+        window.addEventListener("resize", handleResize);
+      
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
+      
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -34,7 +62,7 @@ function TagList() {
 
     return (
         <div className="container">
-            <h2>Chọn ngôn ngữ bạn quan tâm</h2>
+            <h2 className="section-heading">Chọn ngôn ngữ bạn quan tâm</h2>
             <div className="inner-tag">
                 <ButtonPagination title={<LeftOutlined />} onClick={() => handlePrevPage(page, setPage)} disabled={page === 1} />
                 <div className="tag-list">

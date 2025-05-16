@@ -1,5 +1,4 @@
 import { get, post }  from "../../untils/request";
-
 // [POST] /application
 export const postApplication = async(option,token) =>{
 const result = await post("application",option,token);

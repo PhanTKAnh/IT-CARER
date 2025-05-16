@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function DropDown() {
-    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOnclick = useCallback(() => {
@@ -35,10 +34,7 @@ function DropDown() {
             {isOpen && (
                 <div id="adminDropdown" className="admin-dropdown-menu">
                     <div className="admin-dropdown-inner">
-                        <NavLink to="/nha-tuyen-dung/login">
-                        Thông tin cá nhân
-                        </NavLink>
-                        <NavLink to="/nha-tuyen-dung/register">
+                        <NavLink to="/admin/logout">
                             <button className="admin-dropdown-btn-2">Đăng Xuất</button>
                         </NavLink>
                     </div>

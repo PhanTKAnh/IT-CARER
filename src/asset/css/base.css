@@ -23,7 +23,9 @@ a{
     text-decoration: none !important;
     list-style: none !important;
 }
-
+input{
+    outline: none;
+}
 ul{
     list-style: none;
 }

@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import { changePasswordSchema } from "../../../untils/validate";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { patchChangePassword } from "../../../sevices/candidate/candidate.sevices";
 import { getCookie } from "../../../helpers/cookie";
-import { message } from "antd";
+import Swal from "sweetalert2"; 
 
 const ChangePassword = () => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState({
     oldPassword: false,
     newPassword: false,
@@ -21,6 +19,7 @@ const ChangePassword = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(changePasswordSchema),
@@ -34,19 +33,37 @@ const ChangePassword = () => {
       oldPassword: data.oldPassword,
     };
 
-
     try {
       const response = await patchChangePassword(option, tokenCandidate);
 
       if (response.code === 200) {
-        message.success("Mật khẩu đã được cập nhật thành công! 🎉", 2);
+        // Thông báo thành công
+        Swal.fire({
+          title: "Thành công!",
+          text: "Mật khẩu đã được cập nhật thành công! 🎉",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        reset()
       } else {
         setErrorMessage(response.message || "Cập nhật thất bại, vui lòng thử lại!");
-        message.error(response.message || "Cập nhật thất bại, vui lòng thử lại!");
+        // Thông báo thất bại
+        Swal.fire({
+          title: "Lỗi!",
+          text: response.message || "Cập nhật thất bại, vui lòng thử lại!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
     } catch (error) {
       setErrorMessage("Có lỗi xảy ra, vui lòng thử lại sau!");
-      message.error("Có lỗi xảy ra, vui lòng thử lại sau!");
+      // Thông báo lỗi
+      Swal.fire({
+        title: "Lỗi!",
+        text: "Có lỗi xảy ra, vui lòng thử lại sau!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 

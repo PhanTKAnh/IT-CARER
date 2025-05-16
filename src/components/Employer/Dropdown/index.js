@@ -1,12 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
-import {  NavLink, useNavigate } from "react-router-dom";
+import {  NavLink} from "react-router-dom";
 
 function DropDown() {
-    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
-
-
-
     const handleOnclick = useCallback(() => {
         setIsOpen((prev) => !prev);
     }, []);

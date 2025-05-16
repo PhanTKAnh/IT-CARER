@@ -37,10 +37,16 @@ function TableAdmin({ headers = [], data = [], actions = [], itemsPerPage = 10, 
                   <td key={colIndex}>
                     {header.key === "index"
                       ? startIndex + rowIndex + 1
-                      : header.key === "Status" ? (
+                      : header.key === "thumbnail" ? (
+                        <img
+                          src={row[header.key]}
+                          alt="Thumbnail"
+                          style={{ width: 50, height: 50, objectFit: "cover" }}
+                        />
+                      ) : header.key === "Status" ? (
                         <Tag
                           color={row[header.key] === "active" ? "green" : "red"}
-                          onClick={() => onStatusToggle(row.slug, row[header.key])} 
+                          onClick={() => onStatusToggle(row.slug, row[header.key])}
                           style={{ cursor: "pointer" }}
                         >
                           {row[header.key]}
@@ -49,6 +55,7 @@ function TableAdmin({ headers = [], data = [], actions = [], itemsPerPage = 10, 
                         row[header.key]
                       )}
                   </td>
+
                 ))}
                 {actions.length > 0 && (
                   <td>

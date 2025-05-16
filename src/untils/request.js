@@ -47,7 +47,7 @@ export const patch = async (path, options, token) => {
 export const postFormData = async (path, formData, token) => {
     const response = await fetch(API_DOMAIN + path, {
         method: "POST",
-        headers: token ? { Authorization: `Bearer ${token}` } : {}, // ❌ Không đặt `Content-Type`
+        headers: token ? { Authorization: `Bearer ${token}` } : {}, // KHÔNG set Content-Type
         body: formData,
     });
 
